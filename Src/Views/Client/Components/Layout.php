@@ -143,21 +143,21 @@
                                     <div class="main_menu d-none d-lg-block">
                                         <nav>
                                             <ul>
-                                                <li class="active"><a href="index.html">Home</a>
+                                                <li class="active"><a href="/home">Home</a>
                                                     <div class="mega_menu jewelry">
                                                         <div class="mega_items jewelry">
                                                             <ul>
-                                                                <li><a href="index.html">Home 1</a></li>
+                                                                <li><a href="/home">Home 1</a></li>
                                                                 <li><a href="index-2.html">Home 2</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li><a href="shop.html">shop</a>
+                                                <li><a href="/product/list">shop</a>
                                                     <div class="mega_menu jewelry">
                                                         <div class="mega_items jewelry">
                                                             <ul>
-                                                                <li><a href="shop-list.html">shop list</a></li>
+                                                                <li><a href="/product/list">shop list</a></li>
                                                                 <li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
                                                                 <li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
                                                                 <li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
@@ -170,7 +170,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li><a href="#">women</a>
+                                                <!-- <li><a href="#">women</a>
                                                     <div class="mega_menu">
                                                         <div class="mega_top fix">
                                                             <div class="mega_items">
@@ -246,8 +246,8 @@
                                                         </div>
 
                                                     </div>
-                                                </li>
-                                                <li><a href="#">pages</a>
+                                                </li> -->
+                                                <li><a href="/blog">pages</a>
                                                     <div class="mega_menu">
                                                         <div class="mega_top fix">
                                                             <div class="mega_items">
@@ -286,7 +286,7 @@
                                                     </div>
                                                 </li>
 
-                                                <li><a href="blog.html">blog</a>
+                                                <li><a href="/blog">blog</a>
                                                     <div class="mega_menu jewelry">
                                                         <div class="mega_items jewelry">
                                                             <ul>
@@ -297,7 +297,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li><a href="contact.html">contact us</a></li>
+                                                <li><a href="/contact">contact us</a></li>
 
                                             </ul>
                                         </nav>
@@ -459,7 +459,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li><a href="contact.html">contact us</a></li>
+                                                <li><a href="/contact">contact us</a></li>
 
                                             </ul>
                                         </nav>

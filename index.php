@@ -1,9 +1,21 @@
 <?php
+
 use FastRoute\RouteCollector;
 use League\Plates\Extension\URI;
 use Src\Controllers\Client\BlogController;
+use Src\Controllers\Client\ContactController;
 use Src\Controllers\Client\HomeController;
 use Src\Controllers\Client\ProductListController;
+
+use Src\Controllers\Admin\DashboardController;
+use Src\Controllers\Admin\VouchersController;
+use Src\Controllers\Admin\UserController;
+use Src\Controllers\Admin\ProductsController;
+use Src\Controllers\Admin\OrdersController;
+use Src\Controllers\Admin\BrandController;
+use Src\Controllers\Admin\CommentController;
+use Src\Controllers\Admin\CategoryController;
+use Src\Controllers\Admin\AttributeController;
 
 require_once 'vendor/autoload.php';
 
@@ -22,15 +34,33 @@ $dotenv->load();
 
 
 
-//Router
 
-$dispatcher = FastRoute\simpleDispatcher(function(RouteCollector $r) {
+$dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/home', [HomeController::class, 'show']);
     $r->addRoute('GET', '/', [HomeController::class, 'show']);
     $r->addRoute('GET', '/product/list', [ProductListController::class, 'show']);
     $r->addRoute('GET', '/blog', [BlogController::class, 'show']);
-});
+    $r->addRoute('GET', '/contact', [ContactController::class, 'show']);
 
+
+    $r->addGroup('/admin', function (FastRoute\RouteCollector $r) {
+        $r->get('', [DashboardController::class, 'show']);
+        $r->get('/dashboard', [DashboardController::class, 'show']);
+        $r->get('/vouchers', [VouchersController::class, 'show']);
+        $r->get('/users', [UserController::class, 'show']);
+        $r->get('/create-user', [UserController::class, 'add']);
+        $r->get('/products', [productsController::class, 'show']);
+        $r->get('/product/add', [productsController::class, 'add']);
+        $r->get('/allattribute', [UserController::class, 'show']);
+        $r->get('/attribute', [AttributeController::class, 'add']);
+        $r->get('/categories', [CategoryController::class, 'show']);
+        $r->get('/category/add', [CategoryController::class, 'add']);
+        $r->get('/brands', [BrandController::class, 'show']);
+        $r->get('/brand/add', [BrandController::class, 'add']);
+        $r->get('/comments', [CommentController::class, 'show']);
+        $r->get('/orders', [OrdersController::class, 'show']);
+    });
+});
 
 
 
