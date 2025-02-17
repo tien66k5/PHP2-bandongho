@@ -2,12 +2,9 @@
 
 namespace Src\Controllers\Client;
  
-use Src\Controllers\BaseController;
+use Src\Framework\Controller;
 
-class ProductListController extends BaseController {
+class ProductListController extends Controller {
 
-    public function show(){
-        echo $this->view->render('Client/Page/Product/List', ['Name' => 'Tien']);
-        
-    }
+   
 }

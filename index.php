@@ -1,23 +1,10 @@
 <?php
-
-use FastRoute\RouteCollector;
-use League\Plates\Extension\URI;
-use Src\Controllers\Client\BlogController;
-use Src\Controllers\Client\ContactController;
-use Src\Controllers\Client\HomeController;
-use Src\Controllers\Client\ProductListController;
-
-use Src\Controllers\Admin\DashboardController;
-use Src\Controllers\Admin\VouchersController;
-use Src\Controllers\Admin\UserController;
-use Src\Controllers\Admin\ProductsController;
-use Src\Controllers\Admin\OrdersController;
-use Src\Controllers\Admin\BrandController;
-use Src\Controllers\Admin\CommentController;
-use Src\Controllers\Admin\CategoryController;
-use Src\Controllers\Admin\AttributeController;
-
+define("ROOT_PATH", __DIR__);
+// echo ROOT_PATH;
+if (!file_exists(ROOT_PATH . "/uploads")) {
+}
 require_once 'vendor/autoload.php';
+
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -27,83 +14,63 @@ ini_set('error_log', './logs/php-errors.log');
 
 
 
+use Src\Route;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-
+$router = new Route();
 
 
 
-$dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
-    $r->addRoute('GET', '/home', [HomeController::class, 'show']);
-    $r->addRoute('GET', '/', [HomeController::class, 'show']);
-    $r->addRoute('GET', '/product/list', [ProductListController::class, 'show']);
-    $r->addRoute('GET', '/blog', [BlogController::class, 'show']);
-    $r->addRoute('GET', '/contact', [ContactController::class, 'show']);
+// $router->add("/", ["controller" => "HomeController", "action" => "index"], "GET");
+// $router->add("/home", ["controller" => "HomeController", "action" => "show"], "GET");
+// $router->add("/product/list", ["controller" => "ProductListController", "action" => "show"], "GET");
+// $router->add("/blog", ["controller" => "BlogController", "action" => "show"], "GET");
+// $router->add("/contact", ["controller" => "ContactController", "action" => "show"], "GET");
 
+// $router->add("/admin", ["controller" => "DashboardController", "action" => "show"], "GET");
+// $router->add("/admin/dashboard", ["controller" => "DashboardController", "action" => "show"], "GET");
+// $router->add("/admin/vouchers", ["controller" => "VouchersController", "action" => "show"], "GET");
+// $router->add("/admin/users", ["controller" => "UserController", "action" => "show"], "GET");
+// $router->add("/admin/create-user", ["controller" => "UserController", "action" => "add"], "GET");
+$router->add("/admin/products", ["controller" => "ProductsController", "action" => "list"], "GET");
+// $router->add("/admin/product/add", ["controller" => "ProductsController", "action" => "add"], "GET");
+// $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
+// $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");
+// $router->add("/admin/categories", ["controller" => "CategoryController", "action" => "show"], "GET");
+// $router->add("/admin/category/add", ["controller" => "CategoryController", "action" => "add"], "GET");
+// $router->add("/admin/brands", ["controller" => "BrandController", "action" => "show"], "GET");
+// $router->add("/admin/brand/add", ["controller" => "BrandController", "action" => "add"], "GET");
+// $router->add("/admin/comments", ["controller" => "CommentController", "action" => "show"], "GET");
+// $router->add("/admin/orders", ["controller" => "OrdersController", "action" => "show"], "GET");
 
-    $r->addGroup('/admin', function (FastRoute\RouteCollector $r) {
-        $r->get('', [DashboardController::class, 'show']);
-        $r->get('/dashboard', [DashboardController::class, 'show']);
-        $r->get('/vouchers', [VouchersController::class, 'show']);
-        $r->get('/users', [UserController::class, 'show']);
-        $r->get('/create-user', [UserController::class, 'add']);
-        $r->get('/products', [productsController::class, 'show']);
-        $r->get('/product/add', [productsController::class, 'add']);
-        $r->get('/allattribute', [UserController::class, 'show']);
-        $r->get('/attribute', [AttributeController::class, 'add']);
-        $r->get('/categories', [CategoryController::class, 'show']);
-        $r->get('/category/add', [CategoryController::class, 'add']);
-        $r->get('/brands', [BrandController::class, 'show']);
-        $r->get('/brand/add', [BrandController::class, 'add']);
-        $r->get('/comments', [CommentController::class, 'show']);
-        $r->get('/orders', [OrdersController::class, 'show']);
-    });
-});
+$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+$params = $router->match($path, $_SERVER['REQUEST_METHOD']);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
-
-
-if (false !== $pos = strpos($uri, '?')) {
-    $uri = substr($uri, 0, $pos);
+if ($params === false) {
+    exit("Trang không tồn tại! 404 Not Found");
 }
-$uri = rawurldecode($uri);
 
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-switch ($routeInfo[0]) {
-    case FastRoute\Dispatcher::NOT_FOUND:
-        // ... 404 Not Found
-        echo 'Not Found';
-        break;
-    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        $allowedMethods = $routeInfo[1];
-        echo 'Forbidden Method';
-        // ... 405 Method Not Allowed
-        break;
-    case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-        $method = $handler[1];
-        // ... call $handler with $vars
+$controllerName = $params['controller'];
+$action = $params['action'];
 
-        $controller = new $handler[0];
-        $controller->$method($vars);
-        break;
+$controllerClass = "\\Src\\Controllers\\Admin\\" . $controllerName;
+if (!class_exists($controllerClass)) {
+    echo $controllerClass;
+    echo '<\n>';
+    exit("Controller không tồn tại! 404 Not Found");
 }
+
+$controller = new $controllerClass();
+if (!method_exists($controller, $action)) {
+    exit("Action không tồn tại! 404 Not Found");
+}
+
+$request = Src\Framework\Request::createFromGlobal();
+$response = new Src\Framework\Response();
+
+$id = isset($params['id']) ? $params['id'] : null;
+$action = isset($params['action']) ? $params['action'] : 'index';
+
+$controlllerObject = new $controller();
+$controlllerObject->setRequest($request);
+$controlllerObject->setResponse($response);
+$controlllerObject->$action($id);
