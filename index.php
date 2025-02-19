@@ -1,4 +1,7 @@
 <?php
+// phpinfo();
+ob_start();
+// print_r(PDO::getAvailableDrivers());
 define("ROOT_PATH", __DIR__);
 // echo ROOT_PATH;
 if (!file_exists(ROOT_PATH . "/uploads")) {
@@ -32,7 +35,11 @@ $router = new Route();
 // $router->add("/admin/users", ["controller" => "UserController", "action" => "show"], "GET");
 // $router->add("/admin/create-user", ["controller" => "UserController", "action" => "add"], "GET");
 $router->add("/admin/products", ["controller" => "ProductsController", "action" => "list"], "GET");
-// $router->add("/admin/product/add", ["controller" => "ProductsController", "action" => "add"], "GET");
+$router->add("/admin/product/add", ["controller" => "ProductsController", "action" => "add"], "GET");
+$router->add("/admin/product/create", ["controller" => "ProductsController", "action" => "create"], "POST");
+$router->add("/admin/product/edit/{id:\d+}", ["controller" => "ProductsController", "action" => "edit"], "GET");
+$router->add("/admin/product/update/{id:\d+}", ["controller" => "ProductsController", "action" => "update"], "POST");
+$router->add("/admin/product/delete/{id:\d+}", ["controller" => "ProductsController", "action" => "delete"], "GET");
 // $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
 // $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");
 // $router->add("/admin/categories", ["controller" => "CategoryController", "action" => "show"], "GET");

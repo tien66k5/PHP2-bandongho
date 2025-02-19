@@ -39,7 +39,9 @@ class Footer extends Viewer
         </div>
         <!-- <script src="<?= getenv('APP_URL') ?>/public/assets/admin/vendors/js/vendor.bundle.base.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="<?= getenv('APP_URL') ?>/node_modules/chart.js/dist/Chart.min.js"></script>
+        <!-- <script src="<?= getenv('APP_URL') ?>/node_modules/chart.js/dist/Chart.min.js"></script>
+          -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="<?= getenv('APP_URL') ?>/public/Assets/Admin/js/off-canvas.js"></script>
         <script src="<?= getenv('APP_URL') ?>/public/Assets/Admin/js/hoverable-collapse.js"></script>
         <script src="<?= getenv('APP_URL') ?>/public/Assets/Admin/js/template.js"></script>

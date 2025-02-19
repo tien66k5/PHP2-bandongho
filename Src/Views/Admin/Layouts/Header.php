@@ -17,8 +17,8 @@ class Header extends Viewer
     <title>Bee Technova Admin</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="<?= getenv('APP_URL') ?>\node_modules\typicons.font\src\font/typicons.css">
-    <link rel="stylesheet" href="<?= getenv('APP_URL') ?>/public/Assets/Admin/Styles/style.css">
+        <link rel="stylesheet" href="<?= getenv('APP_URL') ?>/node_modules/typicons.font/src/font/typicons.css">
+        <link rel="stylesheet" href="<?= getenv('APP_URL') ?>/public/Assets/Admin/Styles/style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script
@@ -27,7 +27,11 @@ class Header extends Viewer
         crossorigin="anonymous"></script>
     <script src="<?= getenv('APP_URL') ?>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<!-- Bootstrap 4 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+type="text/css" />
 </head>
 
 <body>
@@ -38,7 +42,7 @@ class Header extends Viewer
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
                     <!-- <a class="navbar-brand brand-logo" href="/admin/dashboard"><img src="<?= getenv('APP_URL') ?>public/assets/admin/images/beelogo.png" -->
                     <a class="navbar-brand brand-logo" href="/admin/dashboard"><img
-                            src="<?= getenv('APP_URL') ?>/public\Assets\Admin\Images\WebLogo.png" alt="logo" /></a>
+                            src="<?= getenv('APP_URL') ?>\public\Assets\Admin\Images\WebLogo.png" alt="logo" /></a>
                     <a class="navbar-brand brand-logo-mini" href="/admin/dashboard"
                         style="color: #fff; text-decoration: none;">Bee</a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"

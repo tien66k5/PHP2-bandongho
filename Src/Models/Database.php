@@ -3,6 +3,7 @@
 namespace Src\Models;
 
 use PDO;
+use Exception;
 
 class Database
 {
@@ -16,7 +17,8 @@ class Database
     private string $database;
     private int $port = 3306;
 
-    public function __construct(string $host, string $username, string $password, string $database, int $port){
+    public function __construct(string $host, string $username, string $password, string $database, int $port)
+    {
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
@@ -25,8 +27,16 @@ class Database
     }
 
     //throw try catch
-    public function getConnection(): PDO {
-        $dsn = "mysql:host={$this->host};dbname={$this->database};charset=utf8;port={$this->port}";
-        return new PDO($dsn, $this->username, $this->password);
+    public function getConnection()
+    {
+        try {
+            $dsn = "mysql:host={$this->host};dbname={$this->database};charset=utf8;port={$this->port}";
+            $connection = new PDO($dsn, $this->username, $this->password);
+            var_dump($connection);
+            return $connection;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
     }
 }

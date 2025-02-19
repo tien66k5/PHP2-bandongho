@@ -18,7 +18,7 @@ class Model
 
     public function __construct()
     {
-        $this->database = new Database("localhost", "root", "mysql", "php2", 3306);
+        $this->database = new Database("localhost", "root", "mysql", "php2_asm", 3306);
 
         // dòng này chỉ dùng để test coi nó chạy không? chứ không có tác dụng kết nối db để truy vấn dữ liệu
         $this->database->getConnection();
