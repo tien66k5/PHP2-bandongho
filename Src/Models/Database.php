@@ -32,7 +32,6 @@ class Database
         try {
             $dsn = "mysql:host={$this->host};dbname={$this->database};charset=utf8;port={$this->port}";
             $connection = new PDO($dsn, $this->username, $this->password);
-            var_dump($connection);
             return $connection;
         } catch (Exception $e) {
             echo $e->getMessage();

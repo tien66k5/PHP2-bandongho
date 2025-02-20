@@ -11,7 +11,7 @@ require_once 'vendor/autoload.php';
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+error_reporting(E_ALL); 
 ini_set('log_errors', TRUE);
 ini_set('error_log', './logs/php-errors.log');
 
@@ -20,6 +20,7 @@ ini_set('error_log', './logs/php-errors.log');
 use Src\Route;
 
 $router = new Route();
+$router->add("/", ["controller" => "HomeController", "action" => "show"], "GET");
 
 
 
@@ -39,7 +40,7 @@ $router->add("/admin/product/add", ["controller" => "ProductsController", "actio
 $router->add("/admin/product/create", ["controller" => "ProductsController", "action" => "create"], "POST");
 $router->add("/admin/product/edit/{id:\d+}", ["controller" => "ProductsController", "action" => "edit"], "GET");
 $router->add("/admin/product/update/{id:\d+}", ["controller" => "ProductsController", "action" => "update"], "POST");
-$router->add("/admin/product/delete/{id:\d+}", ["controller" => "ProductsController", "action" => "delete"], "GET");
+$router->add("/admin/product/delete/{id:\d+}", ["controller" => "ProductsController", "action" => "delete"], "GEt");
 // $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
 // $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");
 // $router->add("/admin/categories", ["controller" => "CategoryController", "action" => "show"], "GET");

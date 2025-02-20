@@ -61,9 +61,8 @@ class ProductsController extends Controller
             if (!$record) {
                 throw new Exception("Không thể thêm sản phẩm");
             }
-
-
-            header("Location: " . $record . "/show");
+            // header("Location: " . $record . "/show");
+            header("Location: /admin/products");
             exit;
         } catch (Exception $e) {
             echo "" . $e->getMessage();
