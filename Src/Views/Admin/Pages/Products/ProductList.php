@@ -40,7 +40,7 @@ class ProductList extends Viewer
 
                                     <td><?= htmlspecialchars($product['name']); ?></td>
                                     <td><?= htmlspecialchars($product['price']); ?></td>
-                                    <td><img src="" alt="Hình ảnh sản phẩm" width="100%"></td>
+                                    <td><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt="Hình ảnh sản phẩm" width="100%"></td>
                                     <td>Hoạt động</td>
                                     <td>
                                         <div class="btn-group">
@@ -52,7 +52,7 @@ class ProductList extends Viewer
                                                     <p class="m-0">Sửa</p>
                                                     <i class="ml-1 d-flex align-items-center justify-content-center typcn typcn-edit btn-icon-append"></i>
                                                 </a>
-                                                <a class="dropdown-item d-flex"  href="product/delete/<?= $product['id'] ?>" onclick="return confirm('Bạn chắc chứ?')">
+                                                <a class="dropdown-item d-flex" href="product/delete/<?= $product['id'] ?>" onclick="return confirm('Bạn chắc chứ?')">
                                                     <p class="m-0">Xóa</p>
                                                     <i class="ml-1 d-flex align-items-center justify-content-center typcn typcn-delete-outline btn-icon-append"></i>
                                                 </a>

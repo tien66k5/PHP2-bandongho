@@ -69,12 +69,12 @@ class ProductAdd extends Viewer
                             <input type="number" class="form-control" name="width" id="width" placeholder="Width">
                         </div> -->
 
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="image">Hình ảnh</label>
                             <input type="file" name="image" class="form-control file-upload-info" placeholder="Upload Image">
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="thumbnail">Thumbnail</label>
                             <input type="file" name="thumbnail[]" multiple class="form-control file-upload-info" placeholder="Upload Thumbnail">
                         </div>
@@ -121,7 +121,7 @@ class ProductAdd extends Viewer
 
                         <button type="submit" class="btn btn-primary mr-2" name="submit">Thêm mới</button>
                         <!-- <a href="/admin?url=products" class="btn btn-light">Hủy bỏ</a>  -->
-                        <a href="#" class="btn btn-light">Hủy bỏ</a> 
+                        <a href="#" class="btn btn-light">Hủy bỏ</a>
                     </form>
                 </div>
             </div>
@@ -153,7 +153,12 @@ class ProductAdd extends Viewer
                 $(__this).closest(".items_properties").remove();
             }
         </script>
-
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
+        </script>
+        <script>
+            new FroalaEditor("#description");
+        </script>
 
 <?php
     }

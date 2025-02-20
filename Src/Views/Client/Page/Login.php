@@ -14,7 +14,7 @@ class Login extends Viewer
                 <!--login area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form">
-                        <h2>login</h2>
+                        <h2>Đăng nhập</h2>
                         <form action="#">
                             <p>
                                 <label>Vui lòng nhập email<span>*</span></label>
@@ -25,7 +25,7 @@ class Login extends Viewer
                                 <input type="password" name="password">
                             </p>
                             <div class="login_submit">
-                                <button type="submit">login</button>
+                                <button type="submit" class="rounded">Đăng nhập</button>
                                 <!-- <label for="remember">
                                     <input id="remember" type="checkbox">
                                 Lưu trên thiết bị này
@@ -52,7 +52,7 @@ class Login extends Viewer
                                 <input type="password" name="password">
                             </p>
                             <div class="login_submit">
-                                <button type="submit">Xác nhận</button>
+                                <button type="submit " class="rounded">Xác nhận</button>
                             </div>
                         </form>
                     </div>

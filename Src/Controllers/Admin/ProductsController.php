@@ -48,12 +48,27 @@ class ProductsController extends Controller
     {
         try {
 
+
+            $target_dir = "public/uploads/";
+            // $path_file = $target_dir . basename($_FILES["image"]["name"]);
+            $imageFileType = strtolower(pathinfo(basename($_FILES["image"]["name"]), PATHINFO_EXTENSION));
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $nameImage = date('YmdHis') . '.' . $imageFileType;
+            $target_file = $target_dir . $nameImage;
+            echo $nameImage;
             $data = [
                 'name' => $_POST['name'] ?? '',
                 'description' => $_POST['description'] ?? null,
                 'price' => $_POST['price'] ?? 0,
-                // 'image' => $_FILES['image']['name'] ?? ''
+                'image' => $nameImage ?? ''
             ];
+
+
+            // if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            //     echo 'okela';
+            // } else {
+            //     echo 'fix đi ný';
+            // }
 
             // var_dump($data);
             $model = new Product();
@@ -92,7 +107,6 @@ class ProductsController extends Controller
             } else {
                 Header::render();
                 ProductEdit::render($data);
-                var_dump($data);
                 Footer::render();
             }
         } catch (Exception $e) {

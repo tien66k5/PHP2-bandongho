@@ -50,12 +50,13 @@ $router->add("/admin/product/delete/{id:\d+}", ["controller" => "ProductsControl
 // $router->add("/admin/orders", ["controller" => "OrdersController", "action" => "show"], "GET");
 
 
-// Lấy đường dẫn hiện tại
+use Src\Framework\ErrorHandler;
+
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $params = $router->match($path, $_SERVER['REQUEST_METHOD']);
 
 if ($params === false) {
-    exit("Trang không tồn tại! 404 Not Found");
+    ErrorHandler::notFound();
 }
 
 $controllerName = $params['controller'];
@@ -67,23 +68,20 @@ if (strpos($path, "/admin/") === 0) {
     $controllerClass = "\\Src\\Controllers\\Client\\" . $controllerName;
 }
 
-// Kiểm tra xem Controller có tồn tại không
 if (!class_exists($controllerClass)) {
-    exit("Controller không tồn tại! 404 Not Found");
+    ErrorHandler::notFound("Controller không tồn tại!");
 }
 
 $controller = new $controllerClass();
 
-// Kiểm tra xem method có tồn tại trong Controller không
 if (!method_exists($controller, $action)) {
-    exit("Action không tồn tại! 404 Not Found");
+    ErrorHandler::methodNotAllowed();
 }
 
 $request = Src\Framework\Request::createFromGlobal();
 $response = new Src\Framework\Response();
 
-$id = isset($params['id']) ? $params['id'] : null;
-$action = isset($params['action']) ? $params['action'] : 'index';
+$id = $params['id'] ?? null;
 
 $controller->setRequest($request);
 $controller->setResponse($response);
