@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace   Src\Controllers\Client;
 
 use Src\Framework\Controller;
@@ -6,28 +7,29 @@ use Exception;
 use Src\Views\Client\Layouts\Footer;
 use Src\Views\Client\Layouts\Header;
 use Src\Views\Client\Page\Login;
-
-class LoginController extends Controller {
-    public function add(){
+use Src\Models;
+use Src\Models\Client\LoginModels;
+class LoginController extends Controller
+{
+    public function add()
+    {
         Header::render();
-        Login::render( );
+        Login::render();
         Footer::render();
     }
 
     public function create()
     {
         try {
-
             $data = [
-                'name' => $_POST['name'] ?? '',
-                'description' => $_POST['description'] ?? null,
-                'price' => $_POST['price'] ?? 0,
-                // 'image' => $_FILES['image']['name'] ?? ''
+                'email' => $_POST['name'] ?? '',
+                'password' => $_POST['password'] ?? null,
             ];
+            // var_dump($_POST);
 
-            // // var_dump($data);
-            // $model = new Product();
-            // $record = $model->insert($data);
+            var_dump($data);
+            $model = new LoginModels();
+            $record = $model->insert($data);
             // if (!$record) {
             //     throw new Exception("Không thể thêm sản phẩm");
             // }
@@ -43,6 +45,4 @@ class LoginController extends Controller {
             exit;
         }
     }
-
-
 }

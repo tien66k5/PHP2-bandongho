@@ -45,9 +45,9 @@ class Header extends Viewer
                             <div class="col-lg-6 col-md-6">
                                 <div class="switcher">
                                     <ul>
-                                        <li class="languages"><a href="#"><img src="assets/img/logo/fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
+                                        <li class="languages"><a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets/img/logo/fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown_languages">
-                                                <li><a href="#"><img src="assets/img/logo/fontlogo.jpg" alt=""> English</a></li>
+                                                <li><a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets/img/logo/fontlogo.jpg" alt=""> English</a></li>
                                                 <li><a href="#"><img src="assets/img/logo/fontlogo2.jpg" alt=""> French </a></li>
                                             </ul>
                                         </li>

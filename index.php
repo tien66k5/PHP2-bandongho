@@ -17,6 +17,7 @@ $router = new Route();
 // Định nghĩa các route ngoài admin
 $router->add("/", ["controller" => "HomeController", "action" => "show"], "GET");
 $router->add("/login", ["controller" => "LoginController", "action" => "add"], "GET");
+$router->add("/register", ["controller" => "LoginController", "action" => "create"], "POST");
 
 // Định nghĩa các route cho admin
 // $router->add("/", ["controller" => "HomeController", "action" => "index"], "GET");
