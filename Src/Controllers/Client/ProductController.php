@@ -2,17 +2,17 @@
 
 namespace Src\Controllers\Client;
 
-use  Src\Framework\Controller;
+use Src\Framework\Controller;
 use Src\Views\Client\Layouts\Footer;
 use Src\Views\Client\Layouts\Header;
-use Src\Views\Client\Page\Blog;
+use Src\Views\Client\Page\Product\ProductList;
 
-class BlogController extends Controller
+class ProductController extends Controller
 {
     public function show()
     {
         Header::render();
-        Blog::render();
+        ProductList::render();
         Footer::render();
     }
 }

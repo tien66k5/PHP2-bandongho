@@ -162,11 +162,11 @@ class Header extends Viewer
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li><a href="/product/list">shop</a>
+                                                <li><a href="/products/list">shop</a>
                                                     <div class="mega_menu jewelry">
                                                         <div class="mega_items jewelry">
                                                             <ul>
-                                                                <li><a href="/product/list">shop list</a></li>
+                                                                <li><a href="/products/list">shop list</a></li>
                                                                 <li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
                                                                 <li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
                                                                 <li><a href="shop-sidebar.html">shop Right Sidebar</a></li>

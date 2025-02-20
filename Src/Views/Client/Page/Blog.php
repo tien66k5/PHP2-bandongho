@@ -1,6 +1,14 @@
-<?php $this->layout('Client/Components/Layout'); ?>
+<?php
 
-<?php $this->start('main_content') ?>
+namespace Src\Views\Client\Page;
+
+use Src\Views\Viewer;
+
+class Blog extends Viewer
+{
+    public static function render($array = [])
+    {
+?>
 
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
@@ -25,7 +33,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="single_blog">
                 <div class="blog_thumb">
-                    <a href="blog-details.html"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/blog/blog3.jpg" alt=""></a>
+                    <a href="blog-details.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/blog/blog3.jpg" alt=""></a>
                 </div>
                 <div class="blog_content">
                     <div class="blog_post">
@@ -54,7 +62,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="single_blog">
                 <div class="blog_thumb">
-                    <a href="blog-details.html"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/blog/blog4.jpg" alt=""></a>
+                    <a href="blog-details.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/blog/blog4.jpg" alt=""></a>
                 </div>
                 <div class="blog_content">
                     <div class="blog_post">
@@ -83,7 +91,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="single_blog">
                 <div class="blog_thumb">
-                    <a href="blog-details.html"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/blog/blog1.jpg" alt=""></a>
+                    <a href="blog-details.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/blog/blog1.jpg" alt=""></a>
                 </div>
                 <div class="blog_content">
                     <div class="blog_post">
@@ -112,7 +120,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="single_blog">
                 <div class="blog_thumb">
-                    <a href="blog-details.html"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/blog/blog2.jpg" alt=""></a>
+                    <a href="blog-details.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/blog/blog2.jpg" alt=""></a>
                 </div>
                 <div class="blog_content">
                     <div class="blog_post">
@@ -141,7 +149,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="single_blog">
                 <div class="blog_thumb">
-                    <a href="blog-details.html"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/blog/blog5.jpg" alt=""></a>
+                    <a href="blog-details.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/blog/blog5.jpg" alt=""></a>
                 </div>
                 <div class="blog_content">
                     <div class="blog_post">
@@ -170,7 +178,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="single_blog">
                 <div class="blog_thumb">
-                    <a href="blog-details.html"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/blog/blog11.jpg" alt=""></a>
+                    <a href="blog-details.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/blog/blog11.jpg" alt=""></a>
                 </div>
                 <div class="blog_content">
                     <div class="blog_post">
@@ -227,35 +235,41 @@
         <div class="brand_active owl-carousel">
             <div class="col-lg-2">
                 <div class="single_brand">
-                    <a href="#"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/brand/brand1.jpg" alt=""></a>
+                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand1.jpg" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="single_brand">
-                    <a href="#"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/brand/brand2.jpg" alt=""></a>
+                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand2.jpg" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="single_brand">
-                    <a href="#"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/brand/brand3.jpg" alt=""></a>
+                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand3.jpg" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="single_brand">
-                    <a href="#"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/brand/brand4.jpg" alt=""></a>
+                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand4.jpg" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="single_brand">
-                    <a href="#"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/brand/brand5.jpg" alt=""></a>
+                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand5.jpg" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="single_brand">
-                    <a href="#"><img src="<?= $_ENV['APP_URL'] ?>/public/assets/img/brand/brand6.jpg" alt=""></a>
+                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand6.jpg" alt=""></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php $this->stop() ?>
+
+
+<?php
+    }
+}
+
+?>

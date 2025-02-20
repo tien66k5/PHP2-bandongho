@@ -15,7 +15,10 @@ use Src\Route;
 $router = new Route();
 
 // Định nghĩa các route ngoài admin
-$router->add("/", ["controller" => "HomeController", "action" => "show"], "GET");
+$router->add("/home", ["controller" => "HomeController", "action" => "show"], "GET");
+$router->add("/products/list", ["controller" => "ProductController", "action" => "show"], "GET");
+$router->add("/blog", ["controller" => "BlogController", "action" => "show"], "GET");
+$router->add("/contact", ["controller" => "ContactController", "action" => "show"], "GET");
 $router->add("/login", ["controller" => "LoginController", "action" => "add"], "GET");
 $router->add("/register", ["controller" => "LoginController", "action" => "create"], "POST");
 
