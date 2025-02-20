@@ -1,29 +1,24 @@
 <?php
-// phpinfo();
 ob_start();
-// print_r(PDO::getAvailableDrivers());
 define("ROOT_PATH", __DIR__);
-// echo ROOT_PATH;
-if (!file_exists(ROOT_PATH . "/uploads")) {
-}
-require_once 'vendor/autoload.php';
 
+require_once 'vendor/autoload.php';
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
-error_reporting(E_ALL); 
+error_reporting(E_ALL);
 ini_set('log_errors', TRUE);
 ini_set('error_log', './logs/php-errors.log');
-
-
 
 use Src\Route;
 
 $router = new Route();
+
+// Định nghĩa các route ngoài admin
 $router->add("/", ["controller" => "HomeController", "action" => "show"], "GET");
+$router->add("/login", ["controller" => "LoginController", "action" => "add"], "GET");
 
-
-
+// Định nghĩa các route cho admin
 // $router->add("/", ["controller" => "HomeController", "action" => "index"], "GET");
 // $router->add("/home", ["controller" => "HomeController", "action" => "show"], "GET");
 // $router->add("/product/list", ["controller" => "ProductListController", "action" => "show"], "GET");
@@ -50,6 +45,8 @@ $router->add("/admin/product/delete/{id:\d+}", ["controller" => "ProductsControl
 // $router->add("/admin/comments", ["controller" => "CommentController", "action" => "show"], "GET");
 // $router->add("/admin/orders", ["controller" => "OrdersController", "action" => "show"], "GET");
 
+
+// Lấy đường dẫn hiện tại
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $params = $router->match($path, $_SERVER['REQUEST_METHOD']);
 
@@ -60,14 +57,20 @@ if ($params === false) {
 $controllerName = $params['controller'];
 $action = $params['action'];
 
-$controllerClass = "\\Src\\Controllers\\Admin\\" . $controllerName;
+if (strpos($path, "/admin/") === 0) {
+    $controllerClass = "\\Src\\Controllers\\Admin\\" . $controllerName;
+} else {
+    $controllerClass = "\\Src\\Controllers\\Client\\" . $controllerName;
+}
+
+// Kiểm tra xem Controller có tồn tại không
 if (!class_exists($controllerClass)) {
-    echo $controllerClass;
-    echo '<\n>';
     exit("Controller không tồn tại! 404 Not Found");
 }
 
 $controller = new $controllerClass();
+
+// Kiểm tra xem method có tồn tại trong Controller không
 if (!method_exists($controller, $action)) {
     exit("Action không tồn tại! 404 Not Found");
 }
@@ -78,7 +81,6 @@ $response = new Src\Framework\Response();
 $id = isset($params['id']) ? $params['id'] : null;
 $action = isset($params['action']) ? $params['action'] : 'index';
 
-$controlllerObject = new $controller();
-$controlllerObject->setRequest($request);
-$controlllerObject->setResponse($response);
-$controlllerObject->$action($id);
+$controller->setRequest($request);
+$controller->setResponse($response);
+$controller->$action($id);

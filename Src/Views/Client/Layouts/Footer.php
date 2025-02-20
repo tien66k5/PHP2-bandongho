@@ -16,6 +16,8 @@ class Footer extends Viewer
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="footer_widget">
+                            <h2>ạ á à ắ ằ ặ</h2>
+
                                 <h3>About us</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 <div class="footer_widget_contect">
@@ -195,12 +197,12 @@ class Footer extends Viewer
 
 
         <!-- all js here -->
-        <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/popper.js"></script>
-        <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/bootstrap.min.js"></script>
-        <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/ajax-mail.js"></script>
-        <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/plugins.js"></script>
-        <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/main.js"></script>
+        <script src="<?=  getenv('APP_URL')  ?>/public/assets/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="<?=  getenv('APP_URL')  ?>/public/assets/js/popper.js"></script>
+        <script src="<?=  getenv('APP_URL')  ?>/public/assets/js/bootstrap.min.js"></script>
+        <script src="<?=  getenv('APP_URL')  ?>/public/assets/js/ajax-mail.js"></script>
+        <script src="<?=  getenv('APP_URL')  ?>/public/assets/js/plugins.js"></script>
+        <script src="<?=  getenv('APP_URL')  ?>/public/assets/js/main.js"></script>
         </body>
 
         </html>

@@ -18,15 +18,15 @@ class Header extends Viewer
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?= $_ENV['APP_URL'] ?>/public/assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?=  getenv('APP_URL')  ?>/public/Assets/img/favicon.png">
 
     <!-- all css here -->
-    <link rel="stylesheet" href="<?= $_ENV['APP_URL'] ?>/public/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= $_ENV['APP_URL'] ?>/public/assets/css/plugin.css">
-    <link rel="stylesheet" href="<?= $_ENV['APP_URL'] ?>/public/assets/css/bundle.css">
-    <link rel="stylesheet" href="<?= $_ENV['APP_URL'] ?>/public/assets/css/style.css">
-    <link rel="stylesheet" href="<?= $_ENV['APP_URL'] ?>/public/assets/css/responsive.css">
-    <script src="<?= $_ENV['APP_URL'] ?>/public/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="<?=  getenv('APP_URL')  ?>/public/Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=  getenv('APP_URL')  ?>/public/Assets/css/plugin.css">
+    <link rel="stylesheet" href="<?=  getenv('APP_URL')  ?>/public/Assets/css/bundle.css">
+    <link rel="stylesheet" href="<?=  getenv('APP_URL')  ?>/public/Assets/css/style.css">
+    <link rel="stylesheet" href="<?=  getenv('APP_URL')  ?>/public/Assets/css/responsive.css">
+    <script src="<?=  getenv('APP_URL')  ?>/public/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
