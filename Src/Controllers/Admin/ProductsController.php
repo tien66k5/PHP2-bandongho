@@ -4,6 +4,7 @@ namespace Src\Controllers\Admin;
 
 use Src\Framework\Controller;
 use Src\Models\Admin\Product;
+use Src\Validations\Admin\ProductValidate;
 use Src\Views\Admin\Layouts\Header;
 use Src\Views\Admin\Layouts\Footer;
 use Src\Views\Admin\Pages\Products\ProductList;
@@ -47,38 +48,56 @@ class ProductsController extends Controller
     public function create()
     {
         try {
+            $validate = $_POST;
+            // echo '<pre>';
+            // var_dump( $validate ,$_FILES );
+            $errors = ProductValidate::productValidation($validate, $_FILES);
+            // trả về lỗi validate
+            if ($errors) {
+                // bắt lỗi validate
+                if (!empty($errors)) {
+                    foreach ($errors as $key => $error) {
+                        echo "$error <br>";
+                    }
+                }
+            } else {
 
 
-            $target_dir = "public/uploads/";
-            // $path_file = $target_dir . basename($_FILES["image"]["name"]);
-            $imageFileType = strtolower(pathinfo(basename($_FILES["image"]["name"]), PATHINFO_EXTENSION));
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $nameImage = date('YmdHis') . '.' . $imageFileType;
-            $target_file = $target_dir . $nameImage;
-            echo $nameImage;
-            $data = [
-                'name' => $_POST['name'] ?? '',
-                'description' => $_POST['description'] ?? null,
-                'price' => $_POST['price'] ?? 0,
-                'image' => $nameImage ?? ''
-            ];
+
+                
+                    // tiến hành thêm sản phẩm
+                    $target_dir = "public/uploads/";
+                    // $path_file = $target_dir . basename($_FILES["image"]["name"]);
+                    $imageFileType = strtolower(pathinfo(basename($_FILES["image"]["name"]), PATHINFO_EXTENSION));
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $nameImage = date('YmdHis') . '.' . $imageFileType;
+                    $target_file = $target_dir . $nameImage;
+                    // echo $nameImage;
+                    $data = [
+                        'name' => $_POST['name'] ?? '',
+                        'description' => $_POST['description'] ?? null,
+                        'price' => $_POST['price'] ?? 0,
+                        'image' => $nameImage ?? ''
+                    ];
 
 
-            // if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            //     echo 'okela';
-            // } else {
-            //     echo 'fix đi ný';
-            // }
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                        echo 'okela';
+                    } else {
+                        echo 'fix đi ný';
+                    }
 
-            // var_dump($data);
-            $model = new Product();
-            $record = $model->insert($data);
-            if (!$record) {
-                throw new Exception("Không thể thêm sản phẩm");
-            }
-            // header("Location: " . $record . "/show");
-            header("Location: /admin/products");
-            exit;
+                    // var_dump($data);
+                    $model = new Product();
+                    $record = $model->insert($data);
+                    if (!$record) {
+                        throw new Exception("Không thể thêm sản phẩm");
+                    }
+                    // header("Location: " . $record . "/show");
+                    header("Location: /admin/products");
+                    exit;
+
+                }
         } catch (Exception $e) {
             echo "" . $e->getMessage();
             // ProductNew::render([
@@ -89,6 +108,9 @@ class ProductsController extends Controller
             exit;
         }
     }
+
+
+
     // public function edit(){
     //     echo $this->view->render('Admin/Pages/Products/ProductEdit');
     // }
