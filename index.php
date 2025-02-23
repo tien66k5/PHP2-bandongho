@@ -40,6 +40,13 @@ $router->add("/admin/product/create", ["controller" => "ProductsController", "ac
 $router->add("/admin/product/edit/{id:\d+}", ["controller" => "ProductsController", "action" => "edit"], "GET");
 $router->add("/admin/product/update/{id:\d+}", ["controller" => "ProductsController", "action" => "update"], "POST");
 $router->add("/admin/product/delete/{id:\d+}", ["controller" => "ProductsController", "action" => "delete"], "GEt");
+$router->add("/admin/category", ["controller" => "CategoryController", "action" => "list"], "GET");
+$router->add("/admin/category/add", ["controller" => "CategoryController", "action" => "add"], "GET");
+$router->add("/admin/category/create", ["controller" => "CategoryController", "action" => "create"], "POST");
+$router->add("/admin/category/edit/{id:\d+}", ["controller" => "CategoryController", "action" => "edit"], "GET");
+$router->add("/admin/category/update/{id:\d+}", ["controller" => "CategoryController", "action" => "update"], "POST");
+$router->add("/admin/category/delete/{id:\d+}", ["controller" => "CategoryController", "action" => "delete"], "GEt");
+
 // $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
 // $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");
 // $router->add("/admin/categories", ["controller" => "CategoryController", "action" => "show"], "GET");

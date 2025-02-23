@@ -156,7 +156,7 @@ type="text/css" />
                         </div>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#attributeSubmenu">
                             <i class="typcn typcn-archive menu-icon"></i>
                             <span class="menu-title">Thuộc Tính Sản phẩm</span>
@@ -165,18 +165,18 @@ type="text/css" />
                             <a class="nav-link" href="/admin/allAttribute">Danh sách thuộc tính sản phẩm</a>
                             <a class="nav-link" href="/admin/attribute">Thêm thuộc tính</a>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#categoriesSubmenu">
                             <i class="typcn typcn-th-small menu-icon"></i>
                             <span class="menu-title">Phân loại sản phẩm</span>
                         </a>
                         <div id="categoriesSubmenu" class="collapse submenu">
-                            <a class="nav-link" href="/admin/categories">Danh sách loại sản phẩm</a>
+                            <a class="nav-link" href="/admin/category">Danh sách loại sản phẩm</a>
                             <a class="nav-link" href="/admin/category/add">Thêm loại sản phẩm</a>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#brandsSubmenu">
                             <i class="typcn typcn-tags menu-icon"></i>
                             <span class="menu-title">Thương hiệu</span>
@@ -185,8 +185,8 @@ type="text/css" />
                             <a class="nav-link" href="/admin/brands">Danh sách thương hiệu</a>
                             <a class="nav-link" href="/admin/brand/add">Thêm thương hiệu</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#vouchersSubmenu">
                             <i class="typcn typcn-ticket menu-icon"></i>
                             <span class="menu-title">Mã giảm giá</span>
@@ -195,8 +195,8 @@ type="text/css" />
                             <a class="nav-link" href="/admin/vouchers">Danh sách mã giảm giá</a>
                             <a class="nav-link" href="/admin/create-voucher">Thêm mã giảm giá</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#commentsSubmenu">
                             <i class="typcn typcn-message menu-icon"></i>
                             <span class="menu-title">Bình luận</span>
@@ -234,7 +234,7 @@ type="text/css" />
                             <a class="nav-link" href="/admin/tragop">Danh sách trả góp</a>
                             <a class="nav-link" href="/admin/tragop/add">Thêm đơn trả góp</a>
                         </div>
-                    </li>
+                    </li> -->
 
                 </ul>
             </nav>

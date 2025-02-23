@@ -4,7 +4,7 @@ namespace   Src\Models\Admin;
 
 use Src\Models\Model;
 
-class Product extends Model
+class ProductModel extends Model
 {
     protected $table = "products";
 }

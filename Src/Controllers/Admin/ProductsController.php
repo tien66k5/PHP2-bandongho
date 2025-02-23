@@ -11,6 +11,7 @@ use Src\Views\Admin\Pages\Products\ProductList;
 use Src\Views\Admin\Pages\Products\ProductAdd;
 use Src\Views\Admin\Pages\Products\ProductEdit;
 use Exception;
+use Src\Models\Admin\ProductModel;
 
 class ProductsController extends Controller
 {
@@ -20,7 +21,7 @@ class ProductsController extends Controller
     public function list()
     {
         try {
-            $model = new Product();
+            $model = new ProductModel();
             $products = $model->findAll();
 
             if (!$products) {
@@ -84,7 +85,7 @@ class ProductsController extends Controller
                     }
 
                     // var_dump($data);
-                    $model = new Product();
+                    $model = new ProductModel();
                     $record = $model->insert($data);
                     if (!$record) {
                         throw new Exception("Không thể thêm sản phẩm");
@@ -113,7 +114,7 @@ class ProductsController extends Controller
     public function edit(int $id)
     {
         try {
-            $model = new Product();
+            $model = new ProductModel();
             $product = $model->find($id);
 
             $data = [
@@ -135,7 +136,7 @@ class ProductsController extends Controller
     public function update(int $id)
     {
         try {
-            $model = new Product();
+            $model = new ProductModel();
             $product = $model->find($id);
 
             if (!$product) {
@@ -181,7 +182,7 @@ class ProductsController extends Controller
     public function delete(int $id)
     {
         try {
-            $model = new Product();
+            $model = new ProductModel();
             $product = $model->find($id);
 
             if (!$product) {
