@@ -15,7 +15,7 @@ class Login extends Viewer
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form">
                         <h2>Đăng nhập</h2>
-                        <form action="#">
+                    <form action="/user/login" method="post">
                             <p>
                                 <label>Vui lòng nhập email<span>*</span></label>
                                 <input type="text" name="email">

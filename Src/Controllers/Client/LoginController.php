@@ -52,7 +52,7 @@ class LoginController extends Controller
             if (!preg_match('/[0-9]/', $data['password'])) {
                 $errors[] = "Mật khẩu phải chứa ít nhất một số!";
             }
-            if($model->existsByEmail($data['email'])){
+            if ($model->existsByEmail($data['email'])) {
                 $errors[] = "Email này đã được đăng ký!";
             }
             if (!empty($errors)) {
@@ -77,4 +77,46 @@ class LoginController extends Controller
             exit;
         }
     }
+    public function login()
+{
+    try {
+        $data = [
+            'email' => $_POST['email'] ?? '',
+            'password' => $_POST['password'] ?? '',
+        ];
+
+        $errors = ValidateEmpty::validateEmpty($data);
+
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Email không hợp lệ!";
+        }
+
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                echo $error . "<br>";
+            }
+            return;
+        }
+
+        $model = new LoginModels();
+        $user = $model->login($data['email'], $data['password']); 
+
+        if (!$user) {
+            echo "Sai email hoặc mật khẩu!";
+            return;
+        }   
+        header("Location: /home");
+        exit;
+    } catch (Exception $e) {
+        echo "Lỗi: " . $e->getMessage();
+        exit;
+    }
+}
+public function logout()
+{
+    session_unset(); 
+    header("Location: /login");
+    exit;
+}
+
 }

@@ -9,6 +9,8 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 ini_set('log_errors', TRUE);
 ini_set('error_log', './logs/php-errors.log');
+session_start();
+
 
 use Src\Route;
 
@@ -20,7 +22,10 @@ $router->add("/products/list", ["controller" => "ProductController", "action" =>
 $router->add("/blog", ["controller" => "BlogController", "action" => "show"], "GET");
 $router->add("/contact", ["controller" => "ContactController", "action" => "show"], "GET");
 $router->add("/login", ["controller" => "LoginController", "action" => "add"], "GET");
+$router->add("/user/login", ["controller" => "LoginController", "action" => "login"], "POST");
 $router->add("/register", ["controller" => "LoginController", "action" => "create"], "POST");
+$router->add("/account", ["controller" => "AccountController", "action" => "show"], "GET");
+$router->add("/logout", ["controller" => "LoginController", "action" => "logout"], "GET");
 
 // Định nghĩa các route cho admin
 // $router->add("/", ["controller" => "HomeController", "action" => "index"], "GET");

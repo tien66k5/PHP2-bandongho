@@ -66,7 +66,7 @@ class Header extends Viewer
                                             <ul>
                                                 <li><a href="contact.html" title="Contact">Contact</a></li>
                                                 <li><a href="wishlist.html" title="wishlist">My wishlist</a></li>
-                                                <li><a href="my-account.html" title="My account">My account</a></li>
+                                                <li><a href="/account" title="My account">My account</a></li>
                                                 <li><a href="cart.html" title="My cart">My cart</a></li>
                                                 <li><a href="/login" title="Login">Login</a></li>
                                             </ul>
