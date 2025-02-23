@@ -9,6 +9,8 @@ use Src\Views\Client\Layouts\Header;
 use Src\Views\Client\Page\Login;
 use Src\Models;
 use Src\Models\Client\LoginModels;
+use Src\Validations\ValidateEmpty;
+
 class LoginController extends Controller
 {
     public function add()
@@ -22,26 +24,56 @@ class LoginController extends Controller
     {
         try {
             $data = [
-                'email' => $_POST['name'] ?? '',
+                'email' => $_POST['email'] ?? '',
                 'password' => $_POST['password'] ?? null,
+                'confirmPassword' => $_POST['confirmPassword'] ?? null,
             ];
-            // var_dump($_POST);
 
-            var_dump($data);
+            $errors = [];
             $model = new LoginModels();
-            $record = $model->insert($data);
-            // if (!$record) {
-            //     throw new Exception("Không thể thêm sản phẩm");
-            // }
-            // header("Location: /admin/products");
-            // exit;
-        } catch (Exception $e) {
-            echo "" . $e->getMessage();
-            // ProductNew::render([
-            //     'errors' => $model->getErrors() ?? [$e->getMessage()],
-            //     'product' => $data
-            // ]);
+            // var_dump($data);
+            $errors = ValidateEmpty::validateEmpty($data);
 
+            if (empty($data['email']) || empty($data['password']) || empty($data['confirmPassword'])) {
+                $errors[] = "Không được bỏ trống trường nào!";
+            }
+            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "Email không hợp lệ!";
+            }
+            if ($data['password'] !== $data['confirmPassword']) {
+                $errors[] = "Mật khẩu không khớp!";
+            }
+            if (strlen($data['password']) < 6 || strlen($data['password']) > 13) {
+                $errors[] = "Mật khẩu phải từ 6 đến 13 ký tự";
+            }
+            if (!preg_match('/[A-Z]/', $data['password'])) {
+                $errors[] = "Mật khẩu phải chứa ít nhất một chữ hoa!";
+            }
+            if (!preg_match('/[0-9]/', $data['password'])) {
+                $errors[] = "Mật khẩu phải chứa ít nhất một số!";
+            }
+            if($model->existsByEmail($data['email'])){
+                $errors[] = "Email này đã được đăng ký!";
+            }
+            if (!empty($errors)) {
+                foreach ($errors as $error) {
+                    echo $error . "<br>";
+                }
+                return;
+            }
+            $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+            unset($data['confirmPassword']);
+
+            $record = $model->insert($data);
+
+            if (!$record) {
+                echo ("Không thể đăng ký tài khoản!");
+            }
+
+            header("Location: /login");
+            exit;
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
             exit;
         }
     }

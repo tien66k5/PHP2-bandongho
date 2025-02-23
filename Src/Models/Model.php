@@ -30,7 +30,7 @@ class Model
     }
 
 
-    public function find(int $id): array
+    public function find(int | string $id): array
     {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE `id` = ?";

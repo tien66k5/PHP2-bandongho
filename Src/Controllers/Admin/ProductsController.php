@@ -62,9 +62,6 @@ class ProductsController extends Controller
                 }
             } else {
 
-
-
-                
                     // tiến hành thêm sản phẩm
                     $target_dir = "public/uploads/";
                     // $path_file = $target_dir . basename($_FILES["image"]["name"]);
@@ -79,7 +76,6 @@ class ProductsController extends Controller
                         'price' => $_POST['price'] ?? 0,
                         'image' => $nameImage ?? ''
                     ];
-
 
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                         echo 'okela';

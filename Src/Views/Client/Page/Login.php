@@ -51,6 +51,10 @@ class Login extends Viewer
                                 <label>Mật khẩu<span>*</span></label>
                                 <input type="password" name="password">
                             </p>
+                            <p>
+                                <label>Nhập lại mật khẩu<span>*</span></label>
+                                <input type="password" name="confirmPassword">
+                            </p>
                             <div class="login_submit">
                                 <button type="submit " class="rounded">Xác nhận</button>
                             </div>

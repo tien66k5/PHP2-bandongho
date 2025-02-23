@@ -4,29 +4,34 @@ namespace Src\Validations;
 
 class ValidateEmpty
 {
+    private static array $errors = [];
 
-    public static function validateEmpty($validate)
+    public static function validateEmpty($validate): array
     {
-        $errors = [];
-        // echo '<pre>';
-        // var_dump($validate);
+        self::$errors = []; // Reset lỗi trước khi kiểm tra
 
         foreach ($validate as $key => $value) {
             if (in_array($key, ['submit', 'reset', 'button'])) {
-                continue; // Bỏ qua các input không cần validate
+                continue; 
             }
 
-            // Bỏ trống nhưng vẫn cho phép số 0 hợp lệ
+            // Kiểm tra rỗng, nhưng số 0 hợp lệ
             if ($value === "" || $value === null) {
-                $errors[$key] = ucfirst($key) . " không được để trống!";
+                self::addErrors($key, ucfirst($key) . " không được để trống!");
             }
 
-            // Nếu là checkbox hoặc radio button, kiểm tra isset()
+            // Kiểm tra checkbox hoặc radio button
             if (in_array($key, ['checkbox_field', 'radio_field']) && !isset($validate[$key])) {
-                $errors[$key] = ucfirst($key) . " không được để trống!";
+                self::addErrors($key, ucfirst($key) . " không được để trống!");
             }
         }
 
-        return $errors;
+        return self::$errors;
+    }
+
+    // Hàm thêm lỗi
+    private static function addErrors(string $field, string $message): void
+    {
+        self::$errors[$field] = $message;
     }
 }
