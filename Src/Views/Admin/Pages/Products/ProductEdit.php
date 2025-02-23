@@ -49,6 +49,11 @@ class ProductEdit extends Viewer
                             <label for="price">Giá tiền</label>
                             <input type="number" class="form-control" name="price" id="price" value="<?= htmlspecialchars($data['product']['price'] ?? '') ?>" placeholder="Price">
                         </div>
+                        <div class="form-group">
+                            <label for="image">Hình ảnh</label>
+                            <input type="file" name="image" class="form-control file-upload-info" placeholder="Upload Image">
+                        </div>
+
                         <!-- 
                         <div class="form-group">
                             <label for="quantity">Số lượng</label>
@@ -75,11 +80,7 @@ class ProductEdit extends Viewer
                             <input type="number" class="form-control" name="width" id="width" value="{width}" placeholder="Width">
                         </div>
 
-                        <div class="form-group">
-                            <label for="image">Hình ảnh</label>
-                            <input type="file" name="image" class="form-control file-upload-info" placeholder="Upload Image">
-                            <img src="/public/uploads/{image}" alt="Current Image" width="100px">
-                        </div>
+                
 
                         <div class="form-group">
                             <label for="thumbnail">Thumbnail</label>

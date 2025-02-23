@@ -73,8 +73,8 @@ class ProductsController extends Controller
                 }
             } else {
 
-                $target_dir = $_ENV['UPLOAD_DIR'] ?? 'public/uploads/';
-                date_default_timezone_set($_ENV['TIMEZONE'] ?? 'Asia/Ho_Chi_Minh');
+                $target_dir = $_ENV['UPLOAD_DIR'];
+                date_default_timezone_set($_ENV['TIMEZONE']);
 
                 $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
                 $nameImage = date('YmdHis') . '.' . $imageFileType;
@@ -148,14 +148,28 @@ class ProductsController extends Controller
             if (!$product) {
                 throw new Exception("Sản phẩm không tồn tại: ID $id");
             }
+
             $data = [
                 'name' => htmlentities($_POST['name']),
                 'description' => empty($_POST['description']) ? null : $_POST['description'],
-                'price' => $_POST['price'],
-                // filter_var(    email    )
-
-                // 'image' => !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : $product['image']
+                'price' => $_POST['price']
             ];
+
+            // kiểm tra có ảnh ko có thì up ko thì thôi
+            if (!empty($_FILES['image']['name'])) {
+                $target_dir = $_ENV['UPLOAD_DIR'];
+                date_default_timezone_set($_ENV['TIMEZONE']);
+
+                $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+                $nameImage = date('YmdHis') . '.' . $imageFileType;
+                $target_file = $target_dir . $nameImage;
+
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $data['image'] = $nameImage;
+                } else {
+                    throw new Exception("Lỗi khi upload ảnh.");
+                }
+            }
             // var_dump($data);
             if ($model->update($id, $data)) {
 
