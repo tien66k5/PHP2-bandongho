@@ -10,7 +10,6 @@ use Src\Views\Client\Page\Login;
 use Src\Models;
 use Src\Models\Client\LoginModels;
 use Src\Validations\ValidateEmpty;
-
 class LoginController extends Controller
 {
     public function add()
@@ -105,6 +104,7 @@ class LoginController extends Controller
             echo "Sai email hoặc mật khẩu!";
             return;
         }   
+
         header("Location: /home");
         exit;
     } catch (Exception $e) {

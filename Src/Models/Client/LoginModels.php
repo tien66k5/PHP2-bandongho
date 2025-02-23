@@ -43,6 +43,7 @@ class LoginModels extends Model
             // Lưu thông tin người dùng vào session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['role'] = $user['role']; 
 
             return true;
         } catch (PDOException $e) {

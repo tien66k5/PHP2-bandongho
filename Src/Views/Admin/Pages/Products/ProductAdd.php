@@ -31,13 +31,15 @@ class ProductAdd extends Viewer
                                 <option value="">Chọn thương hiệu</option>
                             </select>
                         </div>
-
+-->
                         <div class="form-group">
-                            <label for="category_id">Phân loại sản phẩm</label>
-                            <select class="form-control" id="category_id" name="category_id">
-                                <option value="">Chọn loại sản phẩm</option>
+                            <label for="category">Phân loại sản phẩm</label>
+                            <select class="form-control" name="category">
+                                <?php foreach ($data as $category): ?>
+                                    <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                <?php endforeach; ?>
                             </select>
-                        </div> -->
+                        </div>
 
                         <div class="form-group">
                             <label for="price">Giá tiền</label>
