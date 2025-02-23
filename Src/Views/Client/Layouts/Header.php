@@ -152,18 +152,18 @@ class Header extends Viewer
                                             <div class="main_menu d-none d-lg-block">
                                                 <nav>
                                                     <ul>
-                                                        <li class="active"><a href="/home">Home</a>
-                                                            <div class="mega_menu jewelry">
+                                                        <li class="active"><a href="/home">Trang chủ</a>
+                                                            <!-- <div class="mega_menu jewelry">
                                                                 <div class="mega_items jewelry">
                                                                     <ul>
                                                                         <li><a href="/home">Home 1</a></li>
                                                                         <li><a href="index-2.html">Home 2</a></li>
                                                                     </ul>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </li>
-                                                        <li><a href="/products/list">shop</a>
-                                                            <div class="mega_menu jewelry">
+                                                        <li><a href="/products/list">Sản phẩm</a>
+                                                            <!-- <div class="mega_menu jewelry">
                                                                 <div class="mega_items jewelry">
                                                                     <ul>
                                                                         <li><a href="/products/list">shop list</a></li>
@@ -177,7 +177,7 @@ class Header extends Viewer
                                                                         <li><a href="single-product-gallery.html">Product Details Gallery</a></li>
                                                                     </ul>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </li>
                                                         <!-- <li><a href="#">women</a>
                                                     <div class="mega_menu">

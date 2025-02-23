@@ -7,14 +7,41 @@ use Src\Controllers\BaseController;
 use Src\Views\Client\Home\Home;
 use Src\Views\Client\Layouts\Header;
 use Src\Views\Client\Layouts\Footer;
+use Exception;
+use Src\Models\Client\HomeModel;
+use Src\Models\Admin\CategoryModel;
 
 class HomeController extends Controller
 {
 
+    // public function show()
+    // {
+
+    //     Header::render();
+    //     Home::render();
+    //     Footer::render();
+    // }
+
+
     public function show()
     {
-        Header::render();
-        Home::render();
-        Footer::render();
+        try {
+
+            $model = new HomeModel();
+            $products = $model->findAll();
+
+            $categoryModel = new CategoryModel();
+            $categories = $categoryModel->findAll();
+
+            // var_dump($products);
+            Header::render();
+            Home::render([
+                'products' => $products,
+                'categories' => $categories
+            ]);
+            Footer::render();
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+        }
     }
 }

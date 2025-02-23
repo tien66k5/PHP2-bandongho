@@ -7,7 +7,9 @@ use Src\views\Viewer;
 class Home extends Viewer
 {
     public static function render(array $data = [])
-    { ?>
+    {
+
+?>
         <!--pos home section-->
         <div class=" pos_home_section">
             <div class="row pos_home">
@@ -15,94 +17,42 @@ class Home extends Viewer
                     <!--sidebar banner-->
                     <div class="sidebar_widget banner mb-35">
                         <div class="banner_img mb-35">
-                            <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/banner/banner5.jpg" alt=""></a>
+                            <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets/img/banner/banner5.jpg" alt=""></a>
                         </div>
                         <div class="banner_img">
-                            <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/banner/banner6.jpg" alt=""></a>
+                            <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets/img/banner/banner6.jpg" alt=""></a>
                         </div>
                     </div>
                     <!--sidebar banner end-->
 
                     <!--categorie menu start-->
                     <div class="sidebar_widget catrgorie mb-35">
-                        <h3>Categories</h3>
+                        <h3>Loại sản phẩm</h3>
                         <ul>
-                            <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> women</a>
-                                <ul class="categorie_sub">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Men</a>
-                                <ul class="categorie_sub">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Footwear</a>
-                                <ul class="categorie_sub">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                </ul>
+                            <?php
+                            if (empty($data['categories'])): ?>
+                                <p>Không có sản phẩm nào!</p>
 
-                            </li>
-                            <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Jewelry</a>
-                                <ul class="categorie_sub">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
+                                <?php else:
+                                foreach ($data['categories'] as $category): ?>
+
+                                    <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i><?= $category['name'] ?></a>
+                                        <!-- <ul class="categorie_sub">
+                                            <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                                <ul class="categorie_sub">
+                                                    <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
+                                                    <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                    <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                    <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                </ul>
+                                            </li>
                                             <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
                                             <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
                                             <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Lady</a>
-                                <ul class="categorie_sub">
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                            <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                </ul>
-                            </li>
+                            <?php endforeach;
+                            endif; ?>
 
                         </ul>
                     </div>
@@ -111,34 +61,30 @@ class Home extends Viewer
                     <!--wishlist block start-->
                     <div class="sidebar_widget wishlist mb-35">
                         <div class="block_title">
-                            <h3><a href="#">Wishlist</a></h3>
+                            <h3><a href="#">Sản phẩm yêu thích</a></h3>
                         </div>
-                        <div class="cart_item">
-                            <div class="cart_img">
-                                <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/cart.jpg" alt=""></a>
-                            </div>
-                            <div class="cart_info">
-                                <a href="#">lorem ipsum dolor</a>
-                                <span class="cart_price">$115.00</span>
-                                <span class="quantity">Qty: 1</span>
-                            </div>
-                            <div class="cart_remove">
-                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                            </div>
-                        </div>
-                        <div class="cart_item">
-                            <div class="cart_img">
-                                <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/cart2.jpg" alt=""></a>
-                            </div>
-                            <div class="cart_info">
-                                <a href="#">Quisque ornare dui</a>
-                                <span class="cart_price">$105.00</span>
-                                <span class="quantity">Qty: 1</span>
-                            </div>
-                            <div class="cart_remove">
-                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                            </div>
-                        </div>
+                        <?php
+                        if (empty($data['products'])): ?>
+                            <p>Không có sản phẩm nào!</p>
+
+                            <?php else:
+                            $limitedProducts = array_slice($data['products'], 0, 2); // Chỉ lấy 2 sản phẩm đầu tiên
+                            foreach ($limitedProducts as $product): ?>
+                                <div class="cart_item">
+                                    <div class="cart_img">
+                                        <a href="#"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                    </div>
+                                    <div class="cart_info">
+                                        <a href="#"><?= htmlspecialchars($product['name']); ?></a>
+                                        <span class="cart_price"><?= number_format($product['price'], 0, ',', '.'); ?> VND</span>
+                                    </div>
+                                    <div class="cart_remove">
+                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                    </div>
+                                </div>
+                        <?php endforeach;
+                        endif; ?>
+
                         <div class="block_content">
                             <p>2 products</p>
                             <a href="#">» My wishlists</a>
@@ -149,18 +95,20 @@ class Home extends Viewer
                     <!--popular tags area-->
                     <div class="sidebar_widget tags mb-35">
                         <div class="block_title">
-                            <h3>popular tags</h3>
+                            <h3>Loại phổ biến</h3>
                         </div>
                         <div class="block_tags">
-                            <a href="#">ipod</a>
-                            <a href="#">sam sung</a>
-                            <a href="#">apple</a>
-                            <a href="#">iphone 5s</a>
-                            <a href="#">superdrive</a>
-                            <a href="#">shuffle</a>
-                            <a href="#">nano</a>
-                            <a href="#">iphone 4s</a>
-                            <a href="#">canon</a>
+                            <?php
+                            if (empty($data['categories'])): ?>
+                                <p>Không có sản phẩm nào!</p>
+
+                                <?php else:
+                                foreach ($data['categories'] as $category): ?>
+
+                                    <a href="#"><?= $category['name'] ?></a>
+                            <?php endforeach;
+                            endif; ?>
+
                         </div>
                     </div>
                     <!--popular tags end-->
@@ -181,7 +129,7 @@ class Home extends Viewer
                     <!--sidebar banner-->
                     <div class="sidebar_widget bottom ">
                         <div class="banner_img">
-                            <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/banner/banner9.jpg" alt=""></a>
+                            <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/banner/banner9.jpg" alt=""></a>
                         </div>
                     </div>
                     <!--sidebar banner end-->
@@ -227,125 +175,45 @@ class Home extends Viewer
                     <!--new product area start-->
                     <div class="new_product_area">
                         <div class="block_title">
-                            <h3>New Products</h3>
+                            <h3>Sản phẩm mới</h3>
                         </div>
                         <div class="row">
                             <div class="product_active owl-carousel">
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product1.jpg" alt=""></a>
-                                            <div class="img_icone">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product2.jpg" alt=""></a>
-                                            <div class="hot_img">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+
+                                <?php
+
+                                if (empty($data['products'])): ?>
+                                    <p>Không có sản phẩm nào!</p>
+
+                                    <?php else:
+                                    foreach ($data['products'] as $product): ?>
+
+                                        <div class="col-lg-3">
+                                            <div class="single_product">
+                                                <div class="product_thumb">
+                                                    <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                                    <div class="img_icone">
+                                                        <img src="<?= getenv('APP_URL')  ?>/public/Assets/img/cart/span-new.png" alt="">
+                                                    </div>
+                                                    <div class="product_action">
+                                                        <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                                                    </div>
+                                                </div>
+                                                <div class="product_content">
+                                                    <span class="product_price"><?= htmlspecialchars($product['price']); ?></span>
+                                                    <h3 class="product_title"><a href="single-product.html"><?= htmlspecialchars($product['name']); ?></a></h3>
+                                                </div>
+                                                <div class="product_info">
+                                                    <ul>
+                                                        <li><a href="#" title=" Add to Wishlist ">Mua ngay</a></li>
+                                                        <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">Xem chi tiết</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$40.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Quisque ornare dui</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product3.jpg" alt=""></a>
-                                            <div class="img_icone">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$60.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Sed non turpiss</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product4.jpg" alt=""></a>
-                                            <div class="hot_img">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$65.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Duis convallis</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product6.jpg" alt=""></a>
-                                            <div class="img_icone">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach;
+                                endif; ?>
+
                             </div>
                         </div>
                     </div>
@@ -354,125 +222,43 @@ class Home extends Viewer
                     <!--featured product start-->
                     <div class="featured_product">
                         <div class="block_title">
-                            <h3>Featured Products</h3>
+                            <h3>Sản phẩm nổi bật</h3>
                         </div>
                         <div class="row">
                             <div class="product_active owl-carousel">
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product7.jpg" alt=""></a>
-                                            <div class="hot_img">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$60.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Maecenas sit amet</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product8.jpg" alt=""></a>
-                                            <div class="img_icone">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                <?php
+                                if (empty($data['products'])): ?>
+                                    <p>Không có sản phẩm nào!</p>
+
+                                    <?php else:
+                                    foreach ($data['products'] as $product): ?>
+
+                                        <div class="col-lg-3">
+                                            <div class="single_product">
+                                                <div class="product_thumb">
+                                                    <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                                    <div class="img_icone">
+                                                        <img src="<?= getenv('APP_URL')  ?>/public/Assets/img/cart/span-new.png" alt="">
+                                                    </div>
+                                                    <div class="product_action">
+                                                        <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                                                    </div>
+                                                </div>
+                                                <div class="product_content">
+                                                    <span class="product_price"><?= htmlspecialchars($product['price']); ?></span>
+                                                    <h3 class="product_title"><a href="single-product.html"><?= htmlspecialchars($product['name']); ?></a></h3>
+                                                </div>
+                                                <div class="product_info">
+                                                    <ul>
+                                                        <li><a href="#" title=" Add to Wishlist ">Mua ngay</a></li>
+                                                        <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">Xem chi tiết</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Sed non turpis</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product9.jpg" alt=""></a>
-                                            <div class="img_icone">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$70.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Donec ac congue</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product3.jpg" alt=""></a>
-                                            <div class="hot_img">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$60.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/product/product2.jpg" alt=""></a>
-                                            <div class="img_icone">
-                                                <img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/cart/span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Phasellus a arcu</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach;
+                                endif; ?>
+
                             </div>
                         </div>
                     </div>
@@ -483,7 +269,7 @@ class Home extends Viewer
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="single_banner">
-                                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/banner/banner7.jpg" alt=""></a>
+                                    <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/banner/banner7.jpg" alt=""></a>
                                     <div class="banner_title">
                                         <p>Up to <span> 40%</span> off</p>
                                     </div>
@@ -491,7 +277,7 @@ class Home extends Viewer
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="single_banner">
-                                    <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/banner/banner8.jpg" alt=""></a>
+                                    <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/banner/banner8.jpg" alt=""></a>
                                     <div class="banner_title title_2">
                                         <p>sale off <span> 30%</span></p>
                                     </div>
@@ -510,32 +296,32 @@ class Home extends Viewer
                             <div class="brand_active owl-carousel">
                                 <div class="col-lg-2">
                                     <div class="single_brand">
-                                        <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand1.jpg" alt=""></a>
+                                        <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/brand/brand1.jpg" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_brand">
-                                        <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand2.jpg" alt=""></a>
+                                        <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/brand/brand2.jpg" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_brand">
-                                        <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand3.jpg" alt=""></a>
+                                        <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/brand/brand3.jpg" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_brand">
-                                        <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand4.jpg" alt=""></a>
+                                        <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/brand/brand4.jpg" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_brand">
-                                        <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand5.jpg" alt=""></a>
+                                        <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/brand/brand5.jpg" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="single_brand">
-                                        <a href="#"><img src="<?=  getenv('APP_URL')  ?>/public/Assets//img/brand/brand6.jpg" alt=""></a>
+                                        <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/brand/brand6.jpg" alt=""></a>
                                     </div>
                                 </div>
                             </div>
