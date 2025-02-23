@@ -56,7 +56,7 @@ class ProductList extends Viewer
                                                     <p class="m-0">Xóa</p>
                                                     <i class="ml-1 d-flex align-items-center justify-content-center typcn typcn-delete-outline btn-icon-append"></i>
                                                 </a>
-                                                <a class="dropdown-item d-flex" href="#">
+                                                <a class="dropdown-item d-flex" href="product/detail/<?= $product['id'] ?>">
                                                     <p class="m-0">Chi tiết</p>
                                                     <i class="ml-1 d-flex align-items-center justify-content-center typcn typcn-edit btn-icon-append"></i>
                                                 </a>

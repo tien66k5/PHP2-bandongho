@@ -17,7 +17,7 @@ class LoginModels extends Model
             $stmt = $this->database->getConnection()->prepare($sql);
             $stmt->execute([$email]);
 
-            return $stmt->fetchColumn() > 0; // Trả về true nếu có email trong DB
+            return $stmt->fetchColumn() > 0; 
         } catch (PDOException $e) {
             throw new Exception("Lỗi kiểm tra email: " . $e->getMessage());
         }
@@ -40,7 +40,6 @@ class LoginModels extends Model
                 return false;
             }
 
-            // Lưu thông tin người dùng vào session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['role'] = $user['role']; 

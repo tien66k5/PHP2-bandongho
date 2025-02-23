@@ -8,6 +8,7 @@ use Src\Models\Admin\Product;
 use Src\Validations\Admin\ProductValidate;
 use Src\Views\Admin\Layouts\Header;
 use Src\Views\Admin\Layouts\Footer;
+use Src\Views\Admin\Pages\Products\ProductDetail;
 use Src\Views\Admin\Pages\Products\ProductList;
 use Src\Views\Admin\Pages\Products\ProductAdd;
 use Src\Views\Admin\Pages\Products\ProductEdit;
@@ -58,7 +59,6 @@ class ProductsController extends Controller
     {
         try {
             AuthMiddleware::checkAdmin();
-
             $validate = $_POST;
             // echo '<pre>';
             // var_dump( $validate ,$_FILES );
@@ -135,6 +135,19 @@ class ProductsController extends Controller
             }
         } catch (Exception $e) {
 
+            echo "Lỗi: " . $e->getMessage();
+        }
+    }
+    public function detail($id)
+    {
+        try {
+            AuthMiddleware::checkAdmin();
+            $model = new ProductModel();
+            $data = $model->find($id);
+            Header::render();
+            ProductDetail::render($data);
+            Footer::render();
+        } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
         }
     }
