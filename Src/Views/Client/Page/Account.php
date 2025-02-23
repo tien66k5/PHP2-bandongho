@@ -39,8 +39,7 @@ class Account extends Viewer
                                         <li> <a href="#orders" data-toggle="tab" class="nav-link">Orders</a></li>
                                         <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li>
                                         <li><a href="#address" data-toggle="tab" class="nav-link">Addresses</a></li>
-                                        <li><a href="#account-details" data-toggle="tab" class="nav-link">Account
-                                                details</a></li>
+                                        <li><a href="#account-details" data-toggle="tab" class="nav-link">Tài khoản</a></li>
                                         <li><a href="/logout" class="nav-link">logout</a></li>
                                     </ul>
                                 </div>
@@ -134,46 +133,48 @@ class Account extends Viewer
                                         <p>Bangladesh</p>
                                     </div>
                                     <div class="tab-pane fade" id="account-details">
-                                        <h3>Account details </h3>
+                                        <h3>Tài khoản</h3>
                                         <div class="login">
                                             <div class="login_form_container">
                                                 <div class="account_login_form">
                                                     <form action="#">
-                                                        <p>Already have an account? <a href="#">Log in instead!</a></p>
+                                                        <!-- <p>Already have an account? <a href="#">Log in instead!</a></p>
                                                         <div class="input-radio">
                                                             <span class="custom-radio"><input type="radio" value="1"
                                                                     name="id_gender"> Mr.</span>
                                                             <span class="custom-radio"><input type="radio" value="1"
                                                                     name="id_gender"> Mrs.</span>
-                                                        </div> <br>
-                                                        <label>First Name</label>
+                                                        </div> <br> -->
+                                                        <!-- <label>First Name</label>
                                                         <input type="text" name="first-name">
                                                         <label>Last Name</label>
-                                                        <input type="text" name="last-name">
+                                                        <input type="text" name="last-name"> -->
+                                                        <label>Họ và Tên</label>
+                                                        <input type="text" name="fullname" value="<?=$data['fullname'] ??  '' ?>"placeholder='Thêm tên cho tài khoản' >
                                                         <label>Email</label>
-                                                        <input type="text" name="email-name">
-                                                        <label>Password</label>
-                                                        <input type="password" name="user-password">
-                                                        <label>Birthdate</label>
+                                                        <input type="text" name="email"value="<?=$data['email'] ?>">
+                                                        <label>Mật khẩu</label>
+                                                        <input type="password" name="password" placeholder="Đổi mật khẩu làm sau nếu kịp">
+                                                        <!-- <label>Birthdate</label>
                                                         <input type="text" placeholder="MM/DD/YYYY" value=""
-                                                            name="birthday">
-                                                        <span class="example">
+                                                            name="birthday"> -->
+                                                        <!-- <span class="example">
                                                             (E.g.: 05/31/1970)
-                                                        </span>
-                                                        <br>
+                                                        </span> -->
+<!--                                                        
                                                         <span class="custom_checkbox">
                                                             <input type="checkbox" value="1" name="optin">
                                                             <label>Receive offers from our partners</label>
                                                         </span>
-                                                        <br>
+                                                  
                                                         <span class="custom_checkbox">
                                                             <input type="checkbox" value="1" name="newsletter">
                                                             <label>Sign up for our newsletter<br><em>You may unsubscribe
                                                                     at any moment. For that purpose, please find our
                                                                     contact info in the legal notice.</em></label>
-                                                        </span>
+                                                        </span> -->
                                                         <div class="save_button primary_btn default_button">
-                                                            <a href="#">Save</a>
+                                                            <a href="#">Lưu</a>
                                                         </div>
                                                     </form>
                                                 </div>

@@ -41,15 +41,15 @@ class ProductDetail extends Viewer
                                     <a class="active" data-toggle="tab" href="#p_tab1" role="tab" aria-controls="p_tab1" aria-selected="false"> <img src="/public/Uploads/<?= isset($data['product']['image']) ? htmlspecialchars($data['product']['image']) : 'default.jpg' ?>" alt="">
                                     </a>
                                 </li>
-                       
+
 
 
                             </ul>
                         </div>
                         <div class="tab-content produc_tab_c">
                             <div class="tab-pane fade show active" id="p_tab1" role="tabpanel">
-                             
-                            <div class="modal_img">
+
+                                <div class="modal_img">
                                     <a href="#"><img src="/public/Uploads/<?= isset($data['product']['image']) ? htmlspecialchars($data['product']['image']) : 'default.jpg' ?>" alt="">
 
                                     </a>
@@ -62,8 +62,8 @@ class ProductDetail extends Viewer
                                         <a class="large_view" href="assets\img\product\product13.jpg"><i class="fa fa-search-plus"></i></a>
                                     </div>
                                 </div>
-                          
-                            </div>     
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,11 +89,13 @@ class ProductDetail extends Viewer
                             <span><?= number_format($data['product']['price']) ?></span>
                         </div>
                         <div class="box_quantity mb-20">
-                            <!-- <form action="#">
-                                <label>quantity</label>
-                                <input min="0" max="100" value="1" type="number">
-                            </form> -->
-                            <button type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            <form action="/user/cart/add/<?= $data['product']['id'] ?>" method="post">
+                                <label for="quantity">Số lượng</label>
+                                <input type="hidden" name="product_id" value="<?= $data['product']['id'] ?>">
+                                <input name="quantity" id="quantity" min="1" max="100" value="1" type="number" required>
+                                <button type="submit"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                            </form>
+
                             <a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
                         </div>
                         <!-- <div class="product_d_size mb-20">

@@ -84,6 +84,7 @@ class ProductsController extends Controller
                     'name' => $_POST['name'] ?? '',
                     'description' => $_POST['description'] ?? null,
                     'price' => $_POST['price'] ?? 0,
+                    'total_quantity'=> $_POST['quantity']?? '',
                     'image' => $nameImage ?? ''
                 ];
 

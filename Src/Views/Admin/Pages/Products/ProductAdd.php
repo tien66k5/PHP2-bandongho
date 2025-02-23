@@ -46,11 +46,11 @@ class ProductAdd extends Viewer
                             <input type="number" class="form-control" name="price" id="price" placeholder="Price">
                         </div>
 
-                        <!-- <div class="form-group">
+                      <div class="form-group">
                             <label for="quantity">Số lượng</label>
                             <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
                         </div>
-
+   <!--
                         <div class="form-group">
                             <label for="discountRate">Giá giảm (%)</label>
                             <input type="number" class="form-control" name="discountRate" id="discountRate" placeholder="Discount Rate">
