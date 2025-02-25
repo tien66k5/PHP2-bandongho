@@ -28,6 +28,7 @@ $router->add("/contact", ["controller" => "ContactController", "action" => "show
 $router->add("/login", ["controller" => "LoginController", "action" => "add"], "GET");
 $router->add("/user/login", ["controller" => "LoginController", "action" => "login"], "POST");
 $router->add("/user/cart", ["controller" => "CartController", "action" => "showCart"], "GET");
+$router->add("/user/order", ["controller" => "AccountController", "action" => "showOder"], "GET");
 $router->add("/user/cart/remove", ["controller" => "CartController", "action" => "removeItem"], "POST");
 $router->add("/user/cart/add/{id:\d+}", ["controller" => "CartController", "action" => "create"], "POST");
 $router->add("/user/checkout", ["controller" => "CartController", "action" => "checkout"], "GET");

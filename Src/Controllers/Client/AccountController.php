@@ -5,6 +5,7 @@ namespace Src\Controllers\Client;
 use Exception;
 use  Src\Framework\Controller;
 use Src\Models\Client\AddressModel;
+use Src\Models\Client\OrdersModels;
 use Src\Models\Client\UserModel;
 use Src\Views\Client\Page\Account;
 use Src\Views\Client\Layouts\Footer;
@@ -16,7 +17,30 @@ class AccountController extends Controller
     {
         try {
             $id = $_SESSION['user_id'];
-            $user = new UserModel;
+            $userModel = new UserModel;
+            $dataUser = $userModel->find($id);
+
+            $ordersModel = new OrdersModels;
+            $dataOder = $ordersModel->findAll();
+
+
+
+            Header::render();
+            // var_dump($dataOder);
+            Account::render([
+                'user' => $dataUser,
+                'orders' => $dataOder
+            ]);            Footer::render();
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+        }
+    }
+
+    public function showOder()
+    {
+        try {
+            $id = $_SESSION['user_id'];
+            $user = new OrdersModels;
             $data = $user->find($id);
             Header::render();
             Account::render($data);
@@ -25,6 +49,7 @@ class AccountController extends Controller
             echo "Lỗi: " . $e->getMessage();
         }
     }
+
 
     // public function createAddress()
     // {

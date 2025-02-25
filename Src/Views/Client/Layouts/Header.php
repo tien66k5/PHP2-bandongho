@@ -21,20 +21,18 @@ class Header extends Viewer
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <link rel="shortcut icon" type="image/x-icon" href="<?= getenv('APP_URL')  ?>/public/Assets/img/favicon.png">
 
-            <!-- all css here -->
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/plugin.css">
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/bundle.css">
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/style.css">
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/responsive.css">
             <script src="<?= getenv('APP_URL')  ?>/public/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
-            <!-- Font Awesome 6 (Mới nhất) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 
         </head>
 
-        <body>
+    <body>
 
             <!--pos page start-->
             <div class="pos_page">
@@ -70,7 +68,7 @@ class Header extends Viewer
                                             <ul>
                                                 <?php
                                                 if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == '0') {
-                                                // var_dump($_SESSION);
+                                                    // var_dump($_SESSION);
                                                 ?>
                                                     <li><a href="/admin/products" title="Contact">Vào trang admin</a></li>
                                                 <?php
