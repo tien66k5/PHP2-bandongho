@@ -16,10 +16,17 @@ class CartModel extends Model
     {
         try {
             $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-            $sql = "SELECT carts.*, products.* 
-                FROM carts 
-                JOIN products ON carts.product_id = products.id 
-                WHERE carts.user_id = ? AND carts.product_id IN ($placeholders)";
+            $sql = "SELECT 
+                        carts.id AS cart_id,
+                        carts.user_id,
+                        carts.product_id,
+                        carts.cart_quantity AS cart_quantity, 
+                        products.name AS product_name,
+                        products.price AS product_price,
+                        products.image AS product_image
+                    FROM carts
+                    JOIN products ON carts.product_id = products.id
+                    WHERE carts.user_id = ? AND carts.product_id IN ($placeholders)";
 
             $stmt = $this->database->getConnection()->prepare($sql);
 
@@ -38,7 +45,7 @@ class CartModel extends Model
     public function insert(array $data): int
     {
         try {
-            if (!isset($data['user_id'], $data['product_id'], $data['quantity'])) {
+            if (!isset($data['user_id'], $data['product_id'], $data['cart_quantity'])) {
                 throw new Exception("Dữ liệu không hợp lệ.");
             }
 
@@ -74,15 +81,15 @@ class CartModel extends Model
             throw new Exception("Lỗi khi xóa giỏ hàng: " . $e->getMessage());
         }
     }
-    public function removeItem(int $userId, int $productId): bool
-{
-    try {
-        $sql = "DELETE FROM {$this->table} WHERE user_id  = ? AND product_id = ?";
-        $stmt = $this->database->getConnection()->prepare($sql);
-        return $stmt->execute([$userId, $productId]);
-    } catch (PDOException $e) {
-        throw new Exception("Lỗi khi xóa sản phẩm khỏi giỏ hàng: " . $e->getMessage());
+    public function deleteCartItem(int $cartId): bool
+    {
+        try {
+            $sql = "DELETE FROM carts WHERE id = ?";
+            $stmt = $this->database->getConnection()->prepare($sql);
+            return $stmt->execute([$cartId]);
+        } catch (PDOException $e) {
+            throw new Exception("Lỗi khi xóa sản phẩm khỏi giỏ hàng: " . $e->getMessage());
+        }
     }
-}
-
+    
 }

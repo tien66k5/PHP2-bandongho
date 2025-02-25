@@ -65,7 +65,7 @@ class Footer extends Viewer
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <!--footer area end-->
 
@@ -79,7 +79,89 @@ class Footer extends Viewer
         <script src="<?= getenv('APP_URL')  ?>/public/assets/js/bootstrap.min.js"></script>
         <script src="<?= getenv('APP_URL')  ?>/public/assets/js/ajax-mail.js"></script>
         <script src="<?= getenv('APP_URL')  ?>/public/assets/js/plugins.js"></script>
-        <script src="<?= getenv('APP_URL')  ?>/public/assets/js/main.js"></script>
+
+
+
+
+
+
+
+
+        <?php
+        $currentUrl = $_SERVER['REQUEST_URI']; // Lấy toàn bộ URL
+
+        // Kiểm tra nếu URL chứa 'checkout'
+        if (strpos($currentUrl, 'checkout') !== false) {
+
+        ?>
+            <script>
+                $(document).ready(function() {
+                    console.log("Script đã chạy!");
+
+                    // Gọi API lấy danh sách tỉnh/thành phố
+                    $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data) {
+                        console.log("Dữ liệu tỉnh nhận được:", data); // Kiểm tra dữ liệu API
+                        if (data.error === 0) {
+                            $.each(data.data, function(key, val) {
+                                $('#tinh').append(`<option value="${val.id}">${val.full_name}</option>`);
+                            });
+                            console.log("Danh sách tỉnh đã được thêm vào select!");
+                        }
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error("Gọi API tỉnh thất bại:", textStatus, errorThrown);
+                    });
+
+                    // Khi chọn tỉnh -> Lấy danh sách quận/huyện
+                    $('#tinh').change(function() {
+                        var tinhId = $(this).val();
+                        console.log("Tỉnh được chọn có ID:", tinhId);
+                        $('#quan').html('<option value="">Quận Huyện</option>');
+                        $('#phuong').html('<option value="">Phường Xã</option>');
+
+                        if (tinhId) {
+                            $.getJSON(`https://esgoo.net/api-tinhthanh/2/${tinhId}.htm`, function(data) {
+                                console.log("Dữ liệu quận huyện nhận được:", data);
+                                if (data.error === 0) {
+                                    $.each(data.data, function(key, val) {
+                                        $('#quan').append(`<option value="${val.id}">${val.full_name}</option>`);
+                                    });
+                                    console.log("Danh sách quận huyện đã được thêm vào select!");
+                                }
+                            }).fail(function(jqXHR, textStatus, errorThrown) {
+                                console.error("Gọi API quận huyện thất bại:", textStatus, errorThrown);
+                            });
+                        }
+                    });
+
+                    // Khi chọn quận -> Lấy danh sách phường/xã
+                    $('#quan').change(function() {
+                        var quanId = $(this).val();
+                        console.log("Quận được chọn có ID:", quanId);
+                        $('#phuong').html('<option value="">Phường Xã</option>');
+
+                        if (quanId) {
+                            $.getJSON(`https://esgoo.net/api-tinhthanh/3/${quanId}.htm`, function(data) {
+                                console.log("Dữ liệu phường xã nhận được:", data);
+                                if (data.error === 0) {
+                                    $.each(data.data, function(key, val) {
+                                        $('#phuong').append(`<option value="${val.id}">${val.full_name}</option>`);
+                                    });
+                                    console.log("Danh sách phường xã đã được thêm vào select!");
+                                }
+                            }).fail(function(jqXHR, textStatus, errorThrown) {
+                                console.error("Gọi API phường xã thất bại:", textStatus, errorThrown);
+                            });
+                        }
+                    });
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script src="<?= getenv('APP_URL')  ?>/public/assets/js/main.js"></script>
+        <?php
+        }
+        ?>
         </body>
 
         </html>

@@ -4,6 +4,7 @@ namespace Src\Controllers\Client;
 
 use Src\Framework\Controller;
 use Src\Models\Client\CartModel;
+use Src\Models\Client\UserModel;
 use Src\Views\Client\Layouts\Header;
 use Src\Views\Client\Layouts\Footer;
 use Exception;
@@ -36,7 +37,7 @@ class CartController extends Controller
             } else {
                 $data = $model->findProductInCart($userId, $productIds);
             }
-        
+
             Header::render();
             Card::render($data);
             Footer::render();
@@ -70,14 +71,14 @@ class CartController extends Controller
 
                 if (!empty($findExisted)) {
                     // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
-                    $newQuantity = $findExisted[0]['quantity'] + $quantity;
-                    $cartModel->updateCart($findExisted[0]['id'], ['quantity' => $newQuantity]);
+                    $newQuantity = $findExisted[0]['cart_quantity'] + $quantity;
+                    $cartModel->updateCart($findExisted[0]['cart_id'], ['cart_quantity' => $newQuantity]);
                 } else {
                     // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
                     $cartModel->insert([
                         'user_id' => $userId,
                         'product_id' => $productId,
-                        'quantity' => $quantity
+                        'cart_quantity' => $quantity
                     ]);
                 }
 
@@ -98,35 +99,51 @@ class CartController extends Controller
     public function checkout()
     {
         try {
+            $userId = $_SESSION['user_id'] ?? null;
+
+            $CartModel = new CartModel();
+            $cartItems = $CartModel->findAll();
+
+            $productIds = array_column($cartItems, 'product_id');
+
+            // Kiểm tra nếu giỏ hàng rỗng
+            if (empty($productIds)) {
+                $dataCart = [];
+            } else {
+                $dataCart = $CartModel->findProductInCart($userId, $productIds);
+            }
+
+
+
+            $user = new UserModel();
+            $dataUser = $user->find($userId);
+            $data = [
+                'dataCart' => $dataCart,
+                'dataUser' =>  $dataUser
+            ];
+            // echo '<pre>';
+            // var_dump($data);
             Header::render();
-            Checkout::render();
+            Checkout::render($data);
             Footer::render();
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
         }
     }
 
-
-    public function deleteItem()
+    public function checkouts() {
+        echo '<pre>';
+        var_dump($_POST);
+        
+    }
+    public function removeItem()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_SESSION['user_id'])) {
-                header("Location: /login");
-                exit();
-            }
-
-            $userId = $_SESSION['user_id'];
-            $productId = $_POST['product_id'] ?? null;
-
-            if (!$productId) {
-                header("Location: /user/cart");
-                exit();
-            }
-
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
+            $cartId = intval($_POST['cart_id']);
             $cartModel = new CartModel();
 
             try {
-                $cartModel->removeItem($userId, $productId);
+                $cartModel->deleteCartItem($cartId);
                 header("Location: /user/cart");
                 exit();
             } catch (Exception $e) {

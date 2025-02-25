@@ -21,6 +21,9 @@ class ProductsController extends Controller
     // public function show() {
     //     echo $this->view->render('Admin/Pages/Products/ProductList');
     // }
+    // AuthMiddleware::checkAdmin();
+    // AuthMiddleware::checkAdmin();
+    // 
     public function list()
     {
         try {

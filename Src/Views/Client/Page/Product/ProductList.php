@@ -222,7 +222,7 @@ class ProductList extends Viewer
                             </ul>
                         </div>
                         <div class="page_amount">
-                            <p>Showing 1–9 of 21 results</p>
+                            <p>1–9 / 21 kết quả</p>
                         </div>
 
                         <div class="select_option">

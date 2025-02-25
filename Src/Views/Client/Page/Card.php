@@ -29,29 +29,43 @@ class Card extends Viewer
                                     </thead>
                                     <tbody>
                                         <?php foreach ($data as $item): ?>
-
                                             <tr>
+                                                <td class="product_remove">
+                                                   
 
-                                                <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img style="width: 50px;" src="/public/Uploads/<?= htmlspecialchars($item['image'])  ?>" alt=""></a></td>
-                                                <td class="product_name"><a href="#"><?= $item['name'] ?></a></td>
-                                                <td class="product-price"><?= number_format($item['price']) ?></td>
-                                                <td class="product_quantity"><input min="0" max="100" value="<?= $item['quantity'] ?>" type="number"></td>
-                                                <td class="product_total"><?= number_format(($item['quantity'] * $item['price'])) ?> </td>
-
-
+                                                    <form method="POST" action="/user/cart/remove">
+                                                        <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
+                                                        <button type="submit" class="border-0" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
+                                                        <a href="#"><i class="fa fa-trash-o"></i></a>   
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                <td class="product_thumb">
+                                                    <a href="#"><img style="width: 50px;" src="/public/Uploads/<?= htmlspecialchars($item['product_image']) ?>" alt=""></a>
+                                                </td>
+                                                <td class="product_name">
+                                                    <a href="#"><?= htmlspecialchars($item['product_name']) ?></a>
+                                                </td>
+                                                <td class="product-price">
+                                                    <?= number_format($item['product_price']) ?>
+                                                </td>
+                                                <td class="product_quantity">
+                                                    <input min="0" max="100" value="<?= $item['cart_quantity'] ?>" type="number">
+                                                </td>
+                                                <td class="product_total">
+                                                    <?= number_format($item['cart_quantity'] * $item['product_price']) ?>
+                                                </td>
                                             </tr>
-
-
                                         <?php endforeach; ?>
+
 
                                     </tbody>
                                 </table>
 
                             </div>
-                            <div class="cart_submit">
+                            <!-- <div class="cart_submit">
                                 <button type="submit">Cập nhật đơn hàng</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -77,10 +91,10 @@ class Card extends Viewer
                                         <?php
                                         $totalPrice = 0;
                                         foreach ($data as $item) {
-                                            $totalPrice += intval($item['quantity']) * floatval($item['price']);
+                                            $totalPrice += intval($item['cart_quantity']) * floatval($item['product_price']);
                                         }
                                         ?>
-                                        <p class="cart_amount"> <?= number_format($totalPrice) ?> VNĐ</p>
+                                        <p class="cart_amount"><?= number_format($totalPrice) ?> VNĐ</p>
                                     </div>
                                     <div class="cart_subtotal ">
                                         <p>Vận chuyển</p>
@@ -89,18 +103,13 @@ class Card extends Viewer
 
                                     <div class="cart_subtotal">
                                         <p>Tổng đơn</p>
-                                        <?php
-                                        $totalPrice = 0;
-                                        foreach ($data as $item) {
-                                            $totalPrice += intval($item['quantity']) * floatval($item['price']);
-                                        }
-                                        ?>
-                                        <p class="cart_amount"> <?= number_format($totalPrice) ?> VNĐ</p>
+                                        <p class="cart_amount"><?= number_format($totalPrice) ?> VNĐ</p>
                                     </div>
                                     <div class="checkout_btn">
-                                        <a href="#">Thanh toán</a>
+                                        <a href="/user/checkout">Thanh toán</a>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -108,6 +117,13 @@ class Card extends Viewer
                 <!--coupon code area end-->
             </form>
         </div>
+
+
+
+
+
+
+
 <?php
     }
 }

@@ -8,8 +8,6 @@ class AuthMiddleware
     {
         if (!isset($_SESSION['user_id']) || $_SESSION['role'] != '0') {
             header("Location: /login");
-            // var_dump($_SESSION);
-
             exit;
         }
     }

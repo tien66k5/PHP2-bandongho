@@ -6,14 +6,15 @@ use Src\Views\Viewer;
 
 class Checkout extends Viewer
 {
-    public static function render($array = [])
+    public static function render($data = [])
     {
+
 ?>
 
         <div class="Checkout_section">
             <div class="row">
                 <div class="col-12">
-                    <div class="user-actions mb-20">
+                    <!-- <div class="user-actions mb-20">
                         <h3>
                             <i class="fa fa-file-o" aria-hidden="true"></i>
                             Returning customer?
@@ -43,8 +44,8 @@ class Checkout extends Viewer
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="user-actions mb-20">
+                    </div> -->
+                    <!-- <div class="user-actions mb-20">
                         <h3>
                             <i class="fa fa-file-o" aria-hidden="true"></i>
                             Returning customer?
@@ -59,69 +60,76 @@ class Checkout extends Viewer
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <form action="#">
-                            <h3>Billing Details</h3>
+                        <form action="/checkout" method="post">
+                            <h3>Chi tiết thanh toán</h3>
                             <div class="row">
 
-                                <div class="col-lg-6 mb-30">
+                                <!-- <div class="col-lg-6 mb-30">
                                     <label>First Name <span>*</span></label>
                                     <input type="text">
                                 </div>
                                 <div class="col-lg-6 mb-30">
                                     <label>Last Name <span>*</span></label>
                                     <input type="text">
-                                </div>
+                                </div> -->
                                 <div class="col-12 mb-30">
-                                    <label>Company Name</label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12 mb-30">
-                                    <label for="country">country <span>*</span></label>
-                                    <select name="cuntry" id="country">
-                                        <option value="2">bangladesh</option>
-                                        <option value="3">Algeria</option>
-                                        <option value="4">Afghanistan</option>
-                                        <option value="5">Ghana</option>
-                                        <option value="6">Albania</option>
-                                        <option value="7">Bahrain</option>
-                                        <option value="8">Colombia</option>
-                                        <option value="9">Dominican Republic</option>
+                                    <label>Họ và tên</label>
+                                    <input name="name" type="text" value="<?= $data['dataUser']['name'] ?? '' ?>">
 
+                                </div>
+                                <!-- <div class="col-12 mb-30">
+                                    <label for="province">Tỉnh / Thành phố <span>*</span></label>
+                                    <select name="province" id="province">
+                                        <option value="">Chọn tỉnh/thành</option>
                                     </select>
                                 </div>
 
                                 <div class="col-12 mb-30">
-                                    <label>Street address <span>*</span></label>
-                                    <input placeholder="House number and street name" type="text">
+                                    <label for="district">Quận / Huyện <span>*</span></label>
+                                    <select name="district" id="district" disabled>
+                                        <option value="">Chọn quận/huyện</option>
+                                    </select>
                                 </div>
+
                                 <div class="col-12 mb-30">
-                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                </div>
+                                    <label for="ward">Phường / Xã <span>*</span></label>
+                                    <select name="ward" id="ward" disabled>
+                                        <option value="">Chọn phường/xã</option>
+                                    </select>
+                                </div> -->
+
+
                                 <div class="col-12 mb-30">
-                                    <label>Town / City <span>*</span></label>
-                                    <input type="text">
+                                    <select class="col-12 mb-30" id="tinh" name="tinh" title="Chọn Tỉnh Thành">
+                                        <option value="">Tỉnh Thành</option>
+                                    </select>
+                                    <select class="col-12 mb-30" id="quan" name="quan" title="Chọn Quận Huyện">
+                                        <option value="">Quận Huyện</option>
+                                    </select>
+                                    <select class="col-12 mb-30" id="phuong" name="phuong" title="Chọn Phường Xã">
+                                        <option value="">Phường Xã</option>
+                                    </select>
                                 </div>
-                                <div class="col-12 mb-30">
-                                    <label>State / County <span>*</span></label>
-                                    <input type="text">
-                                </div>
+
+
+
                                 <div class="col-lg-6 mb-30">
-                                    <label>Phone<span>*</span></label>
-                                    <input type="text">
+                                    <label>Số điện thoại <span>*</span></label>
+                                    <input name="phone" type="text" value="<?= $data['dataUser']['phone'] ?? '' ?>">
 
                                 </div>
                                 <div class="col-lg-6 mb-30">
-                                    <label> Email Address <span>*</span></label>
-                                    <input type="text">
+                                    <label>Email <span>*</span></label>
+                                    <input name="email" type="text" value="<?= $data['dataUser']['email'] ?? '' ?>">
 
                                 </div>
-                                <div class="col-12 mb-30">
+                                <!-- <div class="col-12 mb-30">
                                     <input id="account" type="checkbox" data-target="createp_account">
                                     <label for="account" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">Create an account?</label>
 
@@ -131,8 +139,8 @@ class Checkout extends Viewer
                                             <input placeholder="password" type="password">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 mb-30">
+                                </div> -->
+                                <!-- <div class="col-12 mb-30">
                                     <input id="address" type="checkbox" data-target="createp_account">
                                     <label class="righ_0" for="address" data-toggle="collapse" data-target="#collapsetwo" aria-controls="collapseOne">Ship to a different address?</label>
 
@@ -194,63 +202,71 @@ class Checkout extends Viewer
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
+                                </div> -->
+                                <!-- <div class="col-12">
                                     <div class="order-notes">
                                         <label for="order_note">Order Notes</label>
                                         <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                        </form>
+
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <form action="#">
-                            <h3>Your order</h3>
-                            <div class="order_table table-responsive mb-30">
-                                <table>
-                                    <thead>
+
+                        <h3>Đơn hàng của bạn</h3>
+                        <div class="order_table table-responsive mb-30">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $totalPrice = 0; // Biến lưu tổng tiền
+
+                                    foreach ($data['dataCart'] as $index => $product):
+                                        $subtotal = $product['product_price'] * $product['cart_quantity'];
+                                        $totalPrice += $subtotal;
+
+                                    ?>
+                                        <input type="hidden" name="cart[<?= $index ?>][product_id]" value="<?= $product['product_id'] ?>">
+                                        <input type="hidden" name="cart[<?= $index ?>][cart_quantity]" value="<?= $product['cart_quantity'] ?>">
+                                        <input type="hidden" name="cart[<?= $index ?>][product_price]" value="<?= $product['product_price'] ?>">
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Total</th>
+                                            <td>
+                                                <?= htmlspecialchars($product['product_name']) ?>
+                                                <strong> × <?= $product['cart_quantity'] ?></strong>
+
+                                            </td>
+                                            <td>
+                                                $<?= number_format($subtotal, 2) ?>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td> Handbag fringilla <strong> × 2</strong></td>
-                                            <td> $165.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag justo <strong> × 2</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag elit <strong> × 2</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag Rutrum <strong> × 1</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Cart Subtotal</th>
-                                            <td>$215.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Shipping</th>
-                                            <td><strong>$5.00</strong></td>
-                                        </tr>
-                                        <tr class="order_total">
-                                            <th>Order Total</th>
-                                            <td><strong>$220.00</strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="payment_method">
-                                <div class="panel-default">
+                                    <?php
+                                    endforeach;
+                                    ?>
+
+
+                                    <tr>
+                                        <td>
+                                            <h4>Tổng tiền:</h4>
+                                        </td>
+                                        <td>
+                                            <h4><?= number_format($totalPrice) ?></h4>
+                                            <input type="hidden" name="totalPrice" value="<?= number_format($totalPrice) ?>">
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <!-- <div class="panel-default">
                                     <input id="payment" name="check_method" type="radio" data-target="createp_account">
                                     <label for="payment" data-toggle="collapse" data-target="#method" aria-controls="method">Create an account?</label>
 
@@ -269,16 +285,17 @@ class Checkout extends Viewer
                                             <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="order_button">
-                                    <button type="submit">Proceed to PayPal</button>
-                                </div>
+                                </div> -->
+                            <div class="order_button">
+                                <button type="submit">Tiến hành thanh toán</button>
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
 <?php
     }
 }

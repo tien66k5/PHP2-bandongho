@@ -18,6 +18,7 @@ class Header extends Viewer
             <meta name="description" content="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <!-- Favicon -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <link rel="shortcut icon" type="image/x-icon" href="<?= getenv('APP_URL')  ?>/public/Assets/img/favicon.png">
 
             <!-- all css here -->
@@ -27,10 +28,10 @@ class Header extends Viewer
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/style.css">
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/responsive.css">
             <script src="<?= getenv('APP_URL')  ?>/public/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
+          
         </head>
 
         <body>
-            <!-- Add your site or application content here -->
 
             <!--pos page start-->
             <div class="pos_page">
