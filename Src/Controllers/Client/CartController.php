@@ -3,7 +3,9 @@
 namespace Src\Controllers\Client;
 
 use Src\Framework\Controller;
+use Src\Models\Client\AddressModel;
 use Src\Models\Client\CartModel;
+use Src\Models\Client\OrdersModels;
 use Src\Models\Client\UserModel;
 use Src\Views\Client\Layouts\Header;
 use Src\Views\Client\Layouts\Footer;
@@ -106,23 +108,17 @@ class CartController extends Controller
 
             $productIds = array_column($cartItems, 'product_id');
 
-            // Kiểm tra nếu giỏ hàng rỗng
             if (empty($productIds)) {
                 $dataCart = [];
             } else {
                 $dataCart = $CartModel->findProductInCart($userId, $productIds);
             }
-
-
-
             $user = new UserModel();
             $dataUser = $user->find($userId);
             $data = [
                 'dataCart' => $dataCart,
                 'dataUser' =>  $dataUser
             ];
-            // echo '<pre>';
-            // var_dump($data);
             Header::render();
             Checkout::render($data);
             Footer::render();
@@ -131,11 +127,65 @@ class CartController extends Controller
         }
     }
 
-    public function checkouts() {
+    public function processCheckout()
+    {
         echo '<pre>';
         var_dump($_POST);
+    
+        $total_price = (int) str_replace(',', '', $_POST['totalPrice'] ?? 0);
+        $user_id = $_POST['user_id'] ?? null;
+        $detailedAddress = $_POST['detailedAddress'] ?? '';
+    
+        $addressModel = new AddressModel();
+        $addressData = [
+            'user_id' => $user_id,
+            'province_id' => $_POST['tinh'] ?? null,
+            'district_id' => $_POST['quan'] ?? null,
+            'ward_id' => $_POST['phuong'] ?? null,
+            'address' => $_POST['detailedAddress'] ?? '',
+            'phone' => $_POST['phone'] ?? null,
+            'status' => 1
+        ];
         
+        $address_id = $addressModel->insert($addressData);
+    
+        if (!$address_id) {
+            echo 'Lỗi: Không thể tạo địa chỉ';
+            return;
+        }
+    
+    
+        $orderModel = new OrdersModels();
+    
+        $inserted = $orderModel->insert([
+            'total_price' => $total_price,
+            'user_id' => $user_id,
+            'address_id' => $address_id 
+        ]);
+    
+        if (!$inserted) {
+            echo 'Lỗi: Không thể tạo đơn hàng';
+        } else {
+            echo 'Đơn hàng đã được tạo thành công!';
+        }
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function removeItem()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {

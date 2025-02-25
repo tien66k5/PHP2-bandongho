@@ -66,7 +66,7 @@ class Checkout extends Viewer
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <form action="/checkout" method="post">
+                        <form action="/processCheckout" method="post">
                             <h3>Chi tiết thanh toán</h3>
                             <div class="row">
 
@@ -81,7 +81,7 @@ class Checkout extends Viewer
                                 <div class="col-12 mb-30">
                                     <label>Họ và tên</label>
                                     <input name="name" type="text" value="<?= $data['dataUser']['name'] ?? '' ?>">
-
+                                    <input name="user_id" type="hidden" value="<?= $data['dataUser']['id'] ?>">
                                 </div>
                                 <!-- <div class="col-12 mb-30">
                                     <label for="province">Tỉnh / Thành phố <span>*</span></label>
@@ -117,7 +117,10 @@ class Checkout extends Viewer
                                     </select>
                                 </div>
 
-
+                                <div class="col-lg-12 mb-30">
+                                    <label>Địa chỉ ti tiết<span>*</span></label>
+                                    <input name="$detailedAddress" type="text" value="">
+                                </div>
 
                                 <div class="col-lg-6 mb-30">
                                     <label>Số điện thoại <span>*</span></label>

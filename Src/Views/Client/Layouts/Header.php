@@ -28,7 +28,10 @@ class Header extends Viewer
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/style.css">
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/responsive.css">
             <script src="<?= getenv('APP_URL')  ?>/public/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
-          
+            <!-- Font Awesome 6 (Mới nhất) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
         </head>
 
         <body>
@@ -65,6 +68,14 @@ class Header extends Viewer
                                     <div class="col-lg-6 col-md-6">
                                         <div class="header_links">
                                             <ul>
+                                                <?php
+                                                if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == '0') {
+                                                // var_dump($_SESSION);
+                                                ?>
+                                                    <li><a href="/admin/products" title="Contact">Vào trang admin</a></li>
+                                                <?php
+                                                }
+                                                ?>
                                                 <li><a href="contact.html" title="Contact">Contact</a></li>
                                                 <li><a href="wishlist.html" title="wishlist">My wishlist</a></li>
                                                 <li><a href="/account" title="My account">My account</a></li>
