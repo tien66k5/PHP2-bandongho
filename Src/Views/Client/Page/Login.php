@@ -9,13 +9,47 @@ class Login extends Viewer
     public static function render(array $data = [])
     {
 ?>
+
+
+ 
+
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <?php if (isset($_SESSION['success'])) : ?>
+                <div id="toastSuccess" class="toast bg-success text-white" role="alert" data-bs-autohide="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <strong>Success!</strong> <?= $_SESSION['success'] ?>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            <?php unset($_SESSION['success']);
+            endif; ?>
+
+            <?php if (isset($_SESSION['error'])) : ?>
+                <div id="toastError" class="toast bg-danger text-white" role="alert" data-bs-autohide="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <strong>Error!</strong> <?= $_SESSION['error'] ?>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            <?php unset($_SESSION['error']);
+            endif; ?>
+        </div>
+
+
+
+
+
         <div class="customer_login">
             <div class="row">
                 <!--login area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form">
                         <h2>Đăng nhập</h2>
-                    <form action="/user/login" method="post">
+                        <form action="/user/login" method="post">
                             <p>
                                 <label>Vui lòng nhập email<span>*</span></label>
                                 <input type="text" name="email">

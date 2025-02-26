@@ -13,6 +13,14 @@ use Src\Views\Client\Layouts\Header;
 
 class AccountController extends Controller
 {
+    public function __construct(){
+        if (!isset($_SESSION['user_id'])) {
+        $_SESSION['error'] = "Lỗi: Vui lòng đăng nhập! ";
+            header("Location: /login");
+
+            exit;
+        }
+    }
     public function show()
     {
         try {
@@ -22,9 +30,6 @@ class AccountController extends Controller
 
             $ordersModel = new OrdersModels;
             $dataOder = $ordersModel->findAll();
-
-
-
             Header::render();
             // var_dump($dataOder);
             Account::render([

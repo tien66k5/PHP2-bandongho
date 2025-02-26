@@ -9,6 +9,10 @@ class Account extends Viewer
     public static function render(array $data = [])
     {
 ?>
+
+
+
+
         <!-- $dataUser = $data['user'] ?? []; -->
         <!--breadcrumbs area start-->
         <div class="breadcrumbs_area">
@@ -37,11 +41,11 @@ class Account extends Viewer
                             <ul role="tablist" class="nav flex-column dashboard-list">
                                 <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Dashboard</a>
                                 </li>
-                                <li> <a href="#orders" data-toggle="tab" class="nav-link">Orders</a></li>
-                                <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li>
-                                <li><a href="#address" data-toggle="tab" class="nav-link">Addresses</a></li>
+                                <li> <a href="#orders" data-toggle="tab" class="nav-link">Đơn hàng</a></li>
+                                <!-- <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li> -->
+                                <li><a href="#address" data-toggle="tab" class="nav-link">Địa chỉ</a></li>
                                 <li><a href="#account-details" data-toggle="tab" class="nav-link">Tài khoản</a></li>
-                                <li><a href="/logout" class="nav-link">logout</a></li>
+                                <li><a href="/logout" class="nav-link">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -56,7 +60,7 @@ class Account extends Viewer
                                         details.</a></p>
                             </div>
                             <div class="tab-pane fade" id="orders">
-                                <h3>Orders</h3>
+                                <h3>Đơn hàng</h3>
                                 <div class="coron_table table-responsive">
                                     <table class="table">
                                         <thead>
@@ -109,7 +113,7 @@ class Account extends Viewer
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="downloads">
+                            <!-- <div class="tab-pane fade" id="downloads">
                                 <h3>Downloads</h3>
                                 <div class="coron_table table-responsive">
                                     <table class="table">
@@ -139,7 +143,7 @@ class Account extends Viewer
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="tab-pane" id="address">
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h4 class="billing-address">Billing address</h4>

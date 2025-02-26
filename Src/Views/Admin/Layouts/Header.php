@@ -32,12 +32,50 @@ class Header extends Viewer
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
             <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
                 type="text/css" />
-                <!-- Font Awesome 6 (Mới nhất) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+            <!-- Font Awesome 6 (Mới nhất) -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
         </head>
 
         <body>
+
+
+
+
+
+            <div class="toast-container-custom">
+                <?php if (isset($_SESSION['success']) || isset($_SESSION['error'])) : ?>
+
+                    <?php if (isset($_SESSION['success'])) : ?>
+                        <div id="toastSuccess" class="toast bg-success text-white show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <strong>Thành công!</strong> <?= $_SESSION['success'] ?>
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['error'])) : ?>
+                        <div class="alert alert-danger text-center w-auto">
+                            <?= $_SESSION['error'] ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php
+                    unset($_SESSION['success']);
+                    unset($_SESSION['error']);
+                    ?>
+
+                <?php endif; ?>
+            </div>
+
+
+
+
+
+
             <div class="container-scroller">
 
                 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -131,8 +169,8 @@ class Header extends Viewer
                         <ul class="nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">
-                                <i class="typcn typcn-device-laptop menu-icon"></i>
-                                <span class="menu-title">Về trang web</span>
+                                    <i class="typcn typcn-device-laptop menu-icon"></i>
+                                    <span class="menu-title">Về trang web</span>
                                     <div class="badge badge-danger">new</div>
                                 </a>
                             </li>

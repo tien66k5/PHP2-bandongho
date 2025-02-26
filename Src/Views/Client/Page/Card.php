@@ -28,15 +28,20 @@ class Card extends Viewer
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($data as $item): ?>
+                                        <!-- <pre> -->
+                                        <?php
+                                        // var_dump($data);
+                                         foreach ($data as $item):
+                                             ?>
                                             <tr>
+                            
                                                 <td class="product_remove">
-                                                   
+                                                   <form></form>
 
-                                                    <form method="POST" action="/user/cart/remove">
-                                                        <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
-                                                        <button type="submit" class="border-0" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
-                                                        <a href="#"><i class="fa fa-trash-o"></i></a>   
+                                                    <form method="post" action="/user/cart/remove">
+                                                        <input type="hidden" name="" value="<?= $item['cart_id'] ?>">
+                                                        <button class="border-0" type="submit" class="border-0" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
+                                                        <a href=""><i class="fa fa-trash-o"></i></a>   
                                                         </button>
                                                     </form>
                                                 </td>

@@ -208,7 +208,7 @@ class Home extends Viewer
                                                 </div>
                                                 <div class="product_info">
                                                     <ul>
-                                                        <li><a href="#" title=" Add to Wishlist ">Mua ngay</a></li>
+                                                        <li><a href="/products/detail/<?= $product['id'] ?>" title=" Add to Wishlist ">Mua ngay</a></li>
                                                         <li><a href="/products/detail/<?= $product['id'] ?>">Xem chi tiết</a></li>
                                                     </ul>
                                                 </div>

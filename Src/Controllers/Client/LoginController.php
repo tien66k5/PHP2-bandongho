@@ -27,12 +27,13 @@ class LoginController extends Controller
                 'password' => $_POST['password'] ?? null,
                 'confirmPassword' => $_POST['confirmPassword'] ?? null,
             ];
-
+        
             $errors = [];
             $model = new LoginModels();
-            // var_dump($data);
+            
+            // Kiểm tra dữ liệu đầu vào
             $errors = ValidateEmpty::validateEmpty($data);
-
+        
             if (empty($data['email']) || empty($data['password']) || empty($data['confirmPassword'])) {
                 $errors[] = "Không được bỏ trống trường nào!";
             }
@@ -43,7 +44,7 @@ class LoginController extends Controller
                 $errors[] = "Mật khẩu không khớp!";
             }
             if (strlen($data['password']) < 6 || strlen($data['password']) > 13) {
-                $errors[] = "Mật khẩu phải từ 6 đến 13 ký tự";
+                $errors[] = "Mật khẩu phải từ 6 đến 13 ký tự!";
             }
             if (!preg_match('/[A-Z]/', $data['password'])) {
                 $errors[] = "Mật khẩu phải chứa ít nhất một chữ hoa!";
@@ -54,27 +55,34 @@ class LoginController extends Controller
             if ($model->existsByEmail($data['email'])) {
                 $errors[] = "Email này đã được đăng ký!";
             }
+        
             if (!empty($errors)) {
-                foreach ($errors as $error) {
-                    echo $error . "<br>";
-                }
-                return;
+                $_SESSION['error'] = implode("<br>", $errors);
+                header("Location: /login");
+                // var_dump($_SESSION);
+                exit;
             }
+        
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
             unset($data['confirmPassword']);
-
+        
             $record = $model->insert($data);
-
+        
             if (!$record) {
-                echo ("Không thể đăng ký tài khoản!");
+                $_SESSION['error'] = "Không thể đăng ký tài khoản!";
+                header("Location: /login");
+                exit;
             }
-
+        
+            $_SESSION['success'] = "Đăng ký thành công! Vui lòng đăng nhập.";
             header("Location: /login");
             exit;
         } catch (Exception $e) {
-            echo "Lỗi: " . $e->getMessage();
+            $_SESSION['error'] = "Lỗi: " . $e->getMessage();
+            header("Location: /login");
             exit;
         }
+        
     }
     public function login()
 {

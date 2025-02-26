@@ -74,13 +74,14 @@ class CartModel extends Model
     public function clearCart(int $userId): bool
     {
         try {
-            $sql = "DELETE FROM {$this->table} WHERE id = ?";
+            $sql = "DELETE FROM {$this->table} WHERE user_id = ?";
             $stmt = $this->database->getConnection()->prepare($sql);
             return $stmt->execute([$userId]);
         } catch (PDOException $e) {
             throw new Exception("Lỗi khi xóa giỏ hàng: " . $e->getMessage());
         }
     }
+    
     public function deleteCartItem(int $cartId): bool
     {
         try {

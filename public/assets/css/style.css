@@ -50,7 +50,39 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+.toast-container-custom {
+                    position: fixed;
+                    top: 20px;
+                    /* Điều chỉnh khoảng cách từ trên xuống */
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 1050;
+                    /* Đảm bảo toast luôn nổi trên */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+                    /* Khoảng cách giữa các thông báo */
+                }
 
+                .toast,
+                .alert {
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                    /* Đổ bóng để nổi bật */
+                    animation: fadeInUp 0.5s ease-in-out;
+                }
+
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-20px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
 /*  2.  header css here*/
 
 .pos_page {

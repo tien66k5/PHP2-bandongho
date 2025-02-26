@@ -28,11 +28,64 @@ class Header extends Viewer
             <link rel="stylesheet" href="<?= getenv('APP_URL')  ?>/public/Assets/css/responsive.css">
             <script src="<?= getenv('APP_URL')  ?>/public/Assets/js/vendor/modernizr-2.8.3.min.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+            <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
         </head>
 
-    <body>
+        <body>
+
+
+
+            <div class="toast-container-custom">
+                <?php if (isset($_SESSION['success']) || isset($_SESSION['error'])) : ?>
+
+                    <?php if (isset($_SESSION['success'])) : ?>
+                        <div id="toastSuccess" class="toast bg-success text-white show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <strong>Thành công!</strong> <?= $_SESSION['success'] ?>
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- <?php if (isset($_SESSION['error'])) : ?>
+                        <div class="alert alert-danger text-center w-auto">
+                            <?= $_SESSION['error'] ?>
+                        </div>
+                    <?php endif; ?> -->
+
+                    <?php if (isset($_SESSION['error'])) {
+                        if (is_array($_SESSION['error'])) {
+                            foreach ($_SESSION['error'] as $error) { ?>
+                                <div class='alert alert-danger'><?= $error ?></div>
+                            <?php           }
+                        } else {
+                            ?> <div class='alert alert-danger'><?= $_SESSION['error'] ?></div>
+                    <?php
+                        }
+                    }
+                    ?>
+
+
+
+
+
+                    <?php
+                    unset($_SESSION['success']);
+                    unset($_SESSION['error']);
+                    ?>
+
+                <?php endif; ?>
+            </div>
+
+
+
+
+
+
 
             <!--pos page start-->
             <div class="pos_page">
@@ -74,11 +127,11 @@ class Header extends Viewer
                                                 <?php
                                                 }
                                                 ?>
-                                                <li><a href="contact.html" title="Contact">Contact</a></li>
-                                                <li><a href="wishlist.html" title="wishlist">My wishlist</a></li>
-                                                <li><a href="/account" title="My account">My account</a></li>
-                                                <li><a href="/user/cart" title="My cart">My cart</a></li>
-                                                <li><a href="/login" title="Login">Login</a></li>
+                                                <li><a href="contact.html" title="Contact">Liên hệ</a></li>
+                                                <!-- <li><a href="wishlist.html" title="wishlist">My wishlist</a></li> -->
+                                                <li><a href="/account" title="My account">Tài khoản</a></li>
+                                                <li><a href="/user/cart" title="My cart">Giỏ hàng</a></li>
+                                                <li><a href="/login" title="Login">Đăng nhập | Đăng ký</a></li>
                                             </ul>
                                         </div>
                                     </div>

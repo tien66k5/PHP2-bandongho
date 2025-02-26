@@ -161,39 +161,39 @@ class ProductList extends Viewer
                         <div class="block_title">
                             <h3>Sản phẩm đặc biệt</h3>
                         </div> <?php
-                        if (empty($data['products'])): ?>
+                                if (empty($data['products'])): ?>
                             <p>Không có sản phẩm nào!</p>
 
                             <?php else:
-                            $limitedProducts = array_slice($data['products'], 0, 2); // Chỉ lấy 2 sản phẩm đầu tiên
-                            foreach ($limitedProducts as $product): ?>
-                        <div class="special_product_inner mb-20">
-                            <div class="special_p_thumb " style=" width: 50px; ">
-                                <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
-                            </div>
-                            <div class="small_p_desc">
-                                <div class="product_ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    </ul>
+                                    $limitedProducts = array_slice($data['products'], 0, 2); // Chỉ lấy 2 sản phẩm đầu tiên
+                                    foreach ($limitedProducts as $product): ?>
+                                <div class="special_product_inner mb-20">
+                                    <div class="special_p_thumb " style=" width: 50px; ">
+                                        <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                    </div>
+                                    <div class="small_p_desc">
+                                        <div class="product_ratting">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h3><a href="single-product.html"><?= htmlspecialchars($product['name']); ?></a></h3>
+                                        <div class="special_product_proce">
+                                            <span class="old_price"><?= number_format($product['price'], 0, ',', '.'); ?></span>
+                                            <!-- <span class="new_price">$118.35</span> -->
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3><a href="single-product.html"><?= htmlspecialchars($product['name']); ?></a></h3>
-                                <div class="special_product_proce">
-                                    <span class="old_price"><?= number_format($product['price'], 0, ',', '.'); ?></span>
-                                    <!-- <span class="new_price">$118.35</span> -->
-                                </div>
-                            </div>
-                        </div>
-                          <?php endforeach;
-                        endif; ?>
+                        <?php endforeach;
+                                endif; ?>
 
                     </div>
                     <!--special product end-->
-                   <div> 
+                    <div>
 
                         <div class="block_content">
                             <p>2 products</p>
@@ -261,7 +261,17 @@ class ProductList extends Viewer
                                                             <img src="<?= getenv('APP_URL')  ?>/public/Assets/img/cart/span-new.png" alt="">
                                                         </div>
                                                         <div class="product_action">
-                                                            <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                                                            <!-- <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a> -->
+
+
+
+                                                            <form  action="/user/cart/add/<?= $product['id'] ?>" method="post">
+                                                                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                                                <input class="d-none" name="quantity" id="quantity" min="1" max="100" value="1" type="number" required>
+                                                                <button class="btn btn-success" type="submit"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                                            </form>
+
+
                                                         </div>
                                                     </div>
                                                     <div class="product_content">
@@ -270,7 +280,8 @@ class ProductList extends Viewer
                                                     </div>
                                                     <div class="product_info">
                                                         <ul>
-                                                            <li><a href="#" title=" Add to Wishlist ">Mua ngay</a></li>
+                                                            <li><a href="/products/detail/<?= $product['id'] ?>"> Mua ngay</a></li>
+
                                                             <li><a href="/products/detail/<?= $product['id'] ?>">Xem chi tiết</a></li>
                                                         </ul>
                                                     </div>

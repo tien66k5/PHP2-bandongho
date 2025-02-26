@@ -12,6 +12,7 @@ use Src\Views\Client\Layouts\Footer;
 use Exception;
 use Src\Views\Client\Page\Card;
 use Src\Views\Client\Page\Checkout;
+use Src\Notifications\Notification;
 
 class CartController extends Controller
 {
@@ -28,6 +29,7 @@ class CartController extends Controller
 
             if (!$userId) {
                 header("Location: /login");
+                $_SESSION['error'] = "Lỗi: Vui lòng đăng nhập! ";
                 exit();
             }
 
@@ -131,11 +133,11 @@ class CartController extends Controller
     {
         echo '<pre>';
         var_dump($_POST);
-    
+
         $total_price = (int) str_replace(',', '', $_POST['totalPrice'] ?? 0);
         $user_id = $_POST['user_id'] ?? null;
         $detailedAddress = $_POST['detailedAddress'] ?? '';
-    
+
         $addressModel = new AddressModel();
         $addressData = [
             'user_id' => $user_id,
@@ -146,59 +148,50 @@ class CartController extends Controller
             'phone' => $_POST['phone'] ?? null,
             'status' => 1
         ];
-        
+
         $address_id = $addressModel->insert($addressData);
-    
+
         if (!$address_id) {
             echo 'Lỗi: Không thể tạo địa chỉ';
             return;
         }
-    
-    
+
+
         $orderModel = new OrdersModels();
-    
+
         $inserted = $orderModel->insert([
             'total_price' => $total_price,
             'user_id' => $user_id,
-            'address_id' => $address_id 
+            'address_id' => $address_id
         ]);
-    
+
         if (!$inserted) {
             echo 'Lỗi: Không thể tạo đơn hàng';
         } else {
             echo 'Đơn hàng đã được tạo thành công!';
+            $delete = new CartModel();
+            $user_id = $_POST['user_id'] ?? null;
+            $a = $delete->clearCart($user_id);
+            header("Location: /home");
+           
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function removeItem()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
-            $cartId = intval($_POST['cart_id']);
-            $cartModel = new CartModel();
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
+        //     $cartId = intval($_POST['cart_id']);
+        //     $cartModel = new CartModel();
 
-            try {
-                $cartModel->deleteCartItem($cartId);
-                header("Location: /user/cart");
-                exit();
-            } catch (Exception $e) {
-                echo "Lỗi: " . $e->getMessage();
-            }
-        }
+        //     try {
+        //         $cartModel->deleteCartItem($cartId);
+                
+        //         header("Location: /user/cart");
+        //         exit();
+        //     } catch (Exception $e) {
+        //         echo "Lỗi: " . $e->getMessage();
+        //     }
+        // }
     }
 }
