@@ -40,38 +40,44 @@ class Header extends Viewer
         <body>
 
 
-
-
-
-            <div class="toast-container-custom">
-                <?php if (isset($_SESSION['success']) || isset($_SESSION['error'])) : ?>
-
-                    <?php if (isset($_SESSION['success'])) : ?>
-                        <div id="toastSuccess" class="toast bg-success text-white show" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="d-flex">
-                                <div class="toast-body">
-                                    <strong>Thành công!</strong> <?= $_SESSION['success'] ?>
-                                </div>
-                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            <?php
+            // var_dump($_SESSION);
+            // die;
+            ?>
+            <div class="container mt-4">
+                <?php if (!empty($_SESSION['success'])) : ?>
+                    <div id="toastSuccess" class="toast show bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <strong>Thành công!</strong> <?= $_SESSION['success'] ?>
                             </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                         </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['error'])) : ?>
-                        <div class="alert alert-danger text-center w-auto">
-                            <?= $_SESSION['error'] ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php
-                    unset($_SESSION['success']);
-                    unset($_SESSION['error']);
-                    ?>
-
+                    </div>
                 <?php endif; ?>
+
+                <!-- Hiển thị lỗi nếu có -->
+                <?php if (!empty($_SESSION['errors'])) : ?>
+                    <div class="alert alert-danger text-center w-auto" style="    position: absolute;
+    top: 15px;
+    left: 45%;
+    z-index: 29999;">
+                        <ul class="list-unstyled">
+                            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                                <li><?= $error ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
+                <?php
+                // Xóa session sau khi hiển thị để tránh lỗi hiển thị lại
+                unset($_SESSION['success']);
+                unset($_SESSION['errors']);
+                ?>
             </div>
 
-
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 

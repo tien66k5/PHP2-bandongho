@@ -25,7 +25,7 @@ class ErrorHandler
     public static function badRequest($message = "Yêu cầu không hợp lệ!")
     {
         $_SESSION['error'] = "Lỗi: Không tìm thấy tài nguyên! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(400, $message);
     }
 
@@ -33,7 +33,7 @@ class ErrorHandler
     public static function unauthorized($message = "Bạn chưa đăng nhập!")
     {
         $_SESSION['error'] = "Lỗi: Bạn chưa đăng nhập! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(401, $message);
     }
 
@@ -41,7 +41,7 @@ class ErrorHandler
     public static function forbidden($message = "Bạn không có quyền truy cập!")
     {
         $_SESSION['error'] = "Lỗi: Bạn không có quyền truy cập! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(403, $message);
     }
 
@@ -49,7 +49,7 @@ class ErrorHandler
     public static function notFound($message = "Không tìm thấy tài nguyên!")
     {
         $_SESSION['error'] = "Lỗi: Không tìm thấy tài nguyên! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(404, $message);
     }
 
@@ -57,7 +57,7 @@ class ErrorHandler
     public static function methodNotAllowed($message = "Phương thức không được phép!")
     {
         $_SESSION['error'] = "Lỗi: Phương thức không được phép! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(405, $message);
     }
 
@@ -65,7 +65,7 @@ class ErrorHandler
     public static function internalServerError($message = "Lỗi máy chủ nội bộ!")
     {
         $_SESSION['error'] = "Lỗi: Lỗi máy chủ nội bộ! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(500, $message);
     }
 
@@ -73,7 +73,7 @@ class ErrorHandler
     public static function serviceUnavailable($message = "Dịch vụ tạm thời không khả dụng!")
     {
         $_SESSION['error'] = "Lỗi: Dịch vụ tạm thời không khả dụng! ";
-        header("Location: /home");
+        header("Location: /error");
         // self::handle(503, $message);
     }
 }

@@ -21,6 +21,7 @@ $router = new Route();
 use Src\Middleware\AuthMiddleware;
 // Định nghĩa các route ngoài admin
 $router->add("/home", ["controller" => "HomeController", "action" => "show"], "GET");
+$router->add("/error", ["controller" => "HomeController", "action" => "showError"], "GET");
 $router->add("/products/list", ["controller" => "ProductController", "action" => "show"], "GET");
 $router->add("/products/detail/{id:\d+}", ["controller" => "ProductController", "action" => "detail"], "GET");
 $router->add("/blog", ["controller" => "BlogController", "action" => "show"], "GET");

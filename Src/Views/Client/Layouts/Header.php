@@ -100,19 +100,19 @@ class Header extends Viewer
                                     <div class="col-lg-6 col-md-6">
                                         <div class="switcher">
                                             <ul>
-                                                <li class="languages"><a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets/img/logo/fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
+                                                <!-- <li class="languages"><a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets/img/logo/fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
                                                     <ul class="dropdown_languages">
                                                         <li><a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets/img/logo/fontlogo.jpg" alt=""> English</a></li>
                                                         <li><a href="#"><img src="assets/img/logo/fontlogo2.jpg" alt=""> French </a></li>
                                                     </ul>
-                                                </li>
+                                                </li> -->
 
-                                                <li class="currency"><a href="#"> Currency : $ <i class="fa fa-angle-down"></i></a>
+                                                <!-- <li class="currency"><a href="#"> Currency : $ <i class="fa fa-angle-down"></i></a>
                                                     <ul class="dropdown_currency">
                                                         <li><a href="#"> Dollar (USD)</a></li>
                                                         <li><a href="#"> Euro (EUR) </a></li>
                                                     </ul>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </div>
                                     </div>
@@ -131,7 +131,10 @@ class Header extends Viewer
                                                 <!-- <li><a href="wishlist.html" title="wishlist">My wishlist</a></li> -->
                                                 <li><a href="/account" title="My account">Tài khoản</a></li>
                                                 <li><a href="/user/cart" title="My cart">Giỏ hàng</a></li>
-                                                <li><a href="/login" title="Login">Đăng nhập | Đăng ký</a></li>
+                                                <?php if (!isset($_SESSION['user_id'])) : ?>
+                                                    <li><a href="/login" title="Login">Đăng nhập | Đăng ký</a></li>
+                                                <?php endif; ?>
+
                                             </ul>
                                         </div>
                                     </div>
@@ -153,14 +156,13 @@ class Header extends Viewer
                                         <div class="header_right_info">
                                             <div class="search_bar">
                                                 <form action="#">
-                                                    <input placeholder="Search..." type="text">
+                                                    <input placeholder="Tìm kiếm ..." type="text">
                                                     <button type="submit"><i class="fa fa-search"></i></button>
                                                 </form>
                                             </div>
-                                            <div class="shopping_cart">
+                                            <!-- <div class="shopping_cart">
                                                 <a href="#"><i class="fa fa-shopping-cart"></i> 2Items - $209.44 <i class="fa fa-angle-down"></i></a>
 
-                                                <!--mini cart-->
                                                 <div class="mini_cart">
                                                     <div class="cart_item">
                                                         <div class="cart_img">
@@ -200,8 +202,7 @@ class Header extends Viewer
                                                         <a href="checkout.html"> Check out</a>
                                                     </div>
                                                 </div>
-                                                <!--mini cart end-->
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                     </div>
@@ -319,7 +320,7 @@ class Header extends Viewer
 
                                                     </div>
                                                 </li> -->
-                                                        <li><a href="/blog">pages</a>
+                                                        <!-- <li><a href="/blog"></a>
                                                             <div class="mega_menu">
                                                                 <div class="mega_top fix">
                                                                     <div class="mega_items">
@@ -356,20 +357,20 @@ class Header extends Viewer
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </li>
+                                                        </li> -->
 
-                                                        <li><a href="/blog">blog</a>
+                                                        <li><a href="/blog">Bài viết</a>
                                                             <div class="mega_menu jewelry">
                                                                 <div class="mega_items jewelry">
                                                                     <ul>
                                                                         <li><a href="blog-details.html">blog details</a></li>
                                                                         <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>
+                                                                        <li><a href="blog-sidebar.html">Bai</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <li><a href="/contact">contact us</a></li>
+                                                        <li><a href="/contact">Liên hệ</a></li>
 
                                                     </ul>
                                                 </nav>
@@ -481,7 +482,7 @@ class Header extends Viewer
 
                                                             </div>
                                                         </li>
-                                                        <li><a href="#">pages</a>
+                                                        <!-- <li><a href="#"></a>
                                                             <div>
                                                                 <div>
                                                                     <div>
@@ -518,9 +519,9 @@ class Header extends Viewer
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </li>
+                                                        </li> -->
 
-                                                        <li><a href="blog.html">blog</a>
+                                                        <li><a href="blog.html">Bài viết</a>
                                                             <div>
                                                                 <div>
                                                                     <ul>

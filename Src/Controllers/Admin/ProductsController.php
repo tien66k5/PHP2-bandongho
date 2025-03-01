@@ -67,13 +67,19 @@ class ProductsController extends Controller
             // var_dump( $validate ,$_FILES );
             $errors = ProductValidate::productValidation($validate, $_FILES);
             // trả về lỗi validate
-            if ($errors) {
-                // bắt lỗi validate
-                if (!empty($errors)) {
-                    foreach ($errors as $key => $error) {
-                        echo "$error <br>";
-                    }
-                }
+            // if ($errors) {
+            //     // bắt lỗi validate
+            //     if (!empty($errors)) {
+            //         foreach ($errors as $key => $error) {
+            //             echo "$error <br>";
+            //         }
+            //     }
+            // } 
+
+            if (!empty($errors)) {
+                $_SESSION['errors'] = $errors; 
+                header("Location: /admin/products");
+                // var_dump($_SESSION);
             } else {
 
                 $target_dir = $_ENV['UPLOAD_DIR'];
@@ -87,7 +93,7 @@ class ProductsController extends Controller
                     'name' => $_POST['name'] ?? '',
                     'description' => $_POST['description'] ?? null,
                     'price' => $_POST['price'] ?? 0,
-                    'total_quantity'=> $_POST['quantity']?? '',
+                    'total_quantity' => $_POST['quantity'] ?? '',
                     'image' => $nameImage ?? ''
                 ];
 
@@ -101,7 +107,8 @@ class ProductsController extends Controller
                 $model = new ProductModel();
                 $record = $model->insert($data);
                 if (!$record) {
-                    throw new Exception("Không thể thêm sản phẩm");
+                    // throw new Exception("Không thể thêm sản phẩm");
+                    $errors[] = "Không thể thêm sản phẩm";
                 }
                 // header("Location: " . $record . "/show");
                 header("Location: /admin/products");
@@ -109,10 +116,7 @@ class ProductsController extends Controller
             }
         } catch (Exception $e) {
             echo "" . $e->getMessage();
-            // ProductNew::render([
-            //     'errors' => $model->getErrors() ?? [$e->getMessage()],
-            //     'product' => $data
-            // ]);
+            $errors[] = "Có lỗi trong quá trình xử lý!";
 
             exit;
         }
