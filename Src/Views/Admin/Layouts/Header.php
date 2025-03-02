@@ -222,6 +222,15 @@ class Header extends Viewer
                                     <a class="nav-link" href="/admin/category/add">Thêm loại sản phẩm</a>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
+                            <i class="typcn typcn-clipboard menu-icon"></i>
+                            <span class="menu-title">Đơn hàng</span>
+                        </a>
+                        <div id="ordersSubmenu" class="collapse submenu">
+                            <a class="nav-link" href="/admin/orders">Danh sách đơn hàng</a>
+                        </div>
+                    </li>
                             <!-- <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#brandsSubmenu">
                             <i class="typcn typcn-tags menu-icon"></i>
@@ -262,15 +271,7 @@ class Header extends Viewer
 
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
-                            <i class="typcn typcn-clipboard menu-icon"></i>
-                            <span class="menu-title">Đơn hàng</span>
-                        </a>
-                        <div id="ordersSubmenu" class="collapse submenu">
-                            <a class="nav-link" href="/admin/orders">Danh sách đơn hàng</a>
-                        </div>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#InstallmentsSubmenu">
                             <i class="typcn typcn-th-small menu-icon"></i>

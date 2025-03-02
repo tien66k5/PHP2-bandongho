@@ -22,6 +22,7 @@ use Src\Middleware\AuthMiddleware;
 // Định nghĩa các route ngoài admin
 $router->add("/home", ["controller" => "HomeController", "action" => "show"], "GET");
 $router->add("/error", ["controller" => "HomeController", "action" => "showError"], "GET");
+$router->add("/thank", ["controller" => "HomeController", "action" => "showThank"], "GET");
 $router->add("/products/list", ["controller" => "ProductController", "action" => "show"], "GET");
 $router->add("/products/detail/{id:\d+}", ["controller" => "ProductController", "action" => "detail"], "GET");
 $router->add("/blog", ["controller" => "BlogController", "action" => "show"], "GET");
@@ -73,6 +74,7 @@ if (strpos($_SERVER["REQUEST_URI"], "/admin/") === 0) {
     $router->add("/admin/users/update/{id:\d+}", ["controller" => "UserController", "action" => "update"], "POST");
     $router->add("/admin/users/delete/{id:\d+}", ["controller" => "UserController", "action" => "delete"], "GET");
     $router->add("/admin/users/register", ["controller" => "UserController", "action" => "create"], "POST");
+    $router->add("/admin/oder", ["controller" => "OderController", "action" => "show"], "GET");
 
     // $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
     // $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");

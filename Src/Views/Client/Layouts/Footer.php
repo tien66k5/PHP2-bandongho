@@ -100,58 +100,56 @@ class Footer extends Viewer
 
                     // Gọi API lấy danh sách tỉnh/thành phố
                     $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data) {
-                        console.log("Dữ liệu tỉnh nhận được:", data); // Kiểm tra dữ liệu API
                         if (data.error === 0) {
                             $.each(data.data, function(key, val) {
-                                $('#tinh').append(`<option value="${val.id}">${val.full_name}</option>`);
+                                $('#tinh').append(`<option value="${val.id}" data-name="${val.full_name}">${val.full_name}</option>`);
                             });
-                            console.log("Danh sách tỉnh đã được thêm vào select!");
                         }
-                    }).fail(function(jqXHR, textStatus, errorThrown) {
-                        console.error("Gọi API tỉnh thất bại:", textStatus, errorThrown);
                     });
 
-                    // Khi chọn tỉnh -> Lấy danh sách quận/huyện
+                    // Khi chọn tỉnh -> Cập nhật input hidden và gọi API lấy quận/huyện
                     $('#tinh').change(function() {
                         var tinhId = $(this).val();
-                        console.log("Tỉnh được chọn có ID:", tinhId);
+                        var tinhName = $(this).find(":selected").data("name");
+                        $('#tinh_ten').val(tinhName);
+
                         $('#quan').html('<option value="">Quận Huyện</option>');
                         $('#phuong').html('<option value="">Phường Xã</option>');
 
                         if (tinhId) {
                             $.getJSON(`https://esgoo.net/api-tinhthanh/2/${tinhId}.htm`, function(data) {
-                                console.log("Dữ liệu quận huyện nhận được:", data);
                                 if (data.error === 0) {
                                     $.each(data.data, function(key, val) {
-                                        $('#quan').append(`<option value="${val.id}">${val.full_name}</option>`);
+                                        $('#quan').append(`<option value="${val.id}" data-name="${val.full_name}">${val.full_name}</option>`);
                                     });
-                                    console.log("Danh sách quận huyện đã được thêm vào select!");
                                 }
-                            }).fail(function(jqXHR, textStatus, errorThrown) {
-                                console.error("Gọi API quận huyện thất bại:", textStatus, errorThrown);
                             });
                         }
                     });
 
-                    // Khi chọn quận -> Lấy danh sách phường/xã
+                    // Khi chọn quận -> Cập nhật input hidden và gọi API lấy phường/xã
                     $('#quan').change(function() {
                         var quanId = $(this).val();
-                        console.log("Quận được chọn có ID:", quanId);
+                        var quanName = $(this).find(":selected").data("name");
+                        $('#quan_ten').val(quanName);
+
                         $('#phuong').html('<option value="">Phường Xã</option>');
 
                         if (quanId) {
                             $.getJSON(`https://esgoo.net/api-tinhthanh/3/${quanId}.htm`, function(data) {
-                                console.log("Dữ liệu phường xã nhận được:", data);
                                 if (data.error === 0) {
                                     $.each(data.data, function(key, val) {
-                                        $('#phuong').append(`<option value="${val.id}">${val.full_name}</option>`);
+                                        $('#phuong').append(`<option value="${val.id}" data-name="${val.full_name}">${val.full_name}</option>`);
                                     });
-                                    console.log("Danh sách phường xã đã được thêm vào select!");
                                 }
-                            }).fail(function(jqXHR, textStatus, errorThrown) {
-                                console.error("Gọi API phường xã thất bại:", textStatus, errorThrown);
                             });
                         }
+                    });
+
+                    // Khi chọn phường -> Cập nhật input hidden
+                    $('#phuong').change(function() {
+                        var phuongName = $(this).find(":selected").data("name");
+                        $('#phuong_ten').val(phuongName);
                     });
                 });
             </script>

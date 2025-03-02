@@ -104,22 +104,26 @@ class Checkout extends Viewer
                                     </select>
                                 </div> -->
 
-
                                 <div class="col-12 mb-30">
                                     <select class="col-12 mb-30" id="tinh" name="tinh" title="Chọn Tỉnh Thành">
                                         <option value="">Tỉnh Thành</option>
                                     </select>
+                                    <input type="hidden" name="tinh_ten" id="tinh_ten">
+
                                     <select class="col-12 mb-30" id="quan" name="quan" title="Chọn Quận Huyện">
                                         <option value="">Quận Huyện</option>
                                     </select>
+                                    <input type="hidden" name="quan_ten" id="quan_ten">
+
                                     <select class="col-12 mb-30" id="phuong" name="phuong" title="Chọn Phường Xã">
                                         <option value="">Phường Xã</option>
                                     </select>
+                                    <input type="hidden" name="phuong_ten" id="phuong_ten">
                                 </div>
 
                                 <div class="col-lg-12 mb-30">
                                     <label>Địa chỉ ti tiết<span>*</span></label>
-                                    <input name="$detailedAddress" type="text" value="">
+                                    <input name="detailedAddress" type="text" value="">
                                 </div>
 
                                 <div class="col-lg-6 mb-30">

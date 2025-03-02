@@ -12,6 +12,7 @@ use Exception;
 use Src\Models\Client\HomeModel;
 use Src\Models\Admin\CategoryModel;
 use Src\Views\Client\Page\Error404;
+use Src\Views\Client\Page\Thanks;
 
 class HomeController extends Controller
 {
@@ -51,6 +52,16 @@ class HomeController extends Controller
             // var_dump($products);
             Header::render();
             Error404::render();
+            Footer::render();
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+        }
+    }
+    public function showThank() {
+        try {
+            // var_dump($products);
+            Header::render();
+            Thanks::render();
             Footer::render();
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();

@@ -33,7 +33,7 @@ class UserEdit extends Viewer
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Mật khẩu</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control border-primary" name="password" value="<?= htmlspecialchars($user['password'] ?? '') ?>" />
+                                        <input type="password" class="form-control border-primary" name="password" value="" placeholder="không được đổi đâu" />
                                     </div>
                                 </div>
                             </div>

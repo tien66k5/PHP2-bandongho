@@ -5,14 +5,17 @@ namespace Src\Controllers\Client;
 use Src\Framework\Controller;
 use Src\Models\Client\AddressModel;
 use Src\Models\Client\CartModel;
+use Src\Models\Client\OrderDetailModel;
 use Src\Models\Client\OrdersModels;
 use Src\Models\Client\UserModel;
 use Src\Views\Client\Layouts\Header;
 use Src\Views\Client\Layouts\Footer;
 use Exception;
+use Src\Models\Client\OrdersDetailModels;
 use Src\Views\Client\Page\Card;
 use Src\Views\Client\Page\Checkout;
 use Src\Notifications\Notification;
+use Cake\Database\Query;
 
 class CartController extends Controller
 {
@@ -131,67 +134,100 @@ class CartController extends Controller
 
     public function processCheckout()
     {
-        echo '<pre>';
-        var_dump($_POST);
-
-        $total_price = (int) str_replace(',', '', $_POST['totalPrice'] ?? 0);
-        $user_id = $_POST['user_id'] ?? null;
-        $detailedAddress = $_POST['detailedAddress'] ?? '';
-
-        $addressModel = new AddressModel();
-        $addressData = [
-            'user_id' => $user_id,
-            'province_id' => $_POST['tinh'] ?? null,
-            'district_id' => $_POST['quan'] ?? null,
-            'ward_id' => $_POST['phuong'] ?? null,
-            'address' => $_POST['detailedAddress'] ?? '',
-            'phone' => $_POST['phone'] ?? null,
-            'status' => 1
-        ];
-
-        $address_id = $addressModel->insert($addressData);
-
-        if (!$address_id) {
-            echo 'Lỗi: Không thể tạo địa chỉ';
-            return;
-        }
-
-
-        $orderModel = new OrdersModels();
-
-        $inserted = $orderModel->insert([
-            'total_price' => $total_price,
-            'user_id' => $user_id,
-            'address_id' => $address_id
-        ]);
-
-        if (!$inserted) {
-            echo 'Lỗi: Không thể tạo đơn hàng';
-        } else {
-            echo 'Đơn hàng đã được tạo thành công!';
-            $delete = new CartModel();
+        try {
+            // Lấy dữ liệu từ request và xử lý đầu vào
+            $total_price = (int) str_replace(',', '', $_POST['totalPrice'] ?? 0);
             $user_id = $_POST['user_id'] ?? null;
-            $a = $delete->clearCart($user_id);
-            header("Location: /home");
-           
+            $phone = $_POST['phone'] ?? null;
+            $detailedAddress = $_POST['detailedAddress'] ?? '';
+
+            if (!$user_id) {
+                throw new Exception('Lỗi: Thiếu thông tin người dùng.');
+            }
+
+            if ($total_price <= 0) {
+                throw new Exception('Lỗi: Tổng giá trị đơn hàng không hợp lệ.');
+            }
+
+            // Tạo địa chỉ giao hàng
+            $fullAddress = trim(
+                ($_POST['tinh_ten'] ?? '') . ', ' .
+                    ($_POST['quan_ten'] ?? '') . ', ' .
+                    ($_POST['phuong_ten'] ?? '') . ', ' .
+                    ($_POST['detailedAddress'] ?? '')
+            );
+
+            $addressModel = new AddressModel();
+            $address_id = $addressModel->insert([
+                'user_id' => $user_id,
+                'address' => $fullAddress,
+                'phone' => $phone,
+                'status' => 1
+            ]);
+
+            if (!$address_id) {
+                throw new Exception('Lỗi: Không thể tạo địa chỉ giao hàng.');
+            }
+
+            // Tạo đơn hàng
+            $orderModel = new OrdersModels();
+            $order_id = $orderModel->insert([
+                'total_price' => $total_price,
+                'user_id' => $user_id,
+                'address_id' => $address_id
+            ]);
+
+            if (!$order_id) {
+                throw new Exception('Lỗi: Không thể tạo đơn hàng.');
+            }
+
+            // Lấy danh sách sản phẩm trong giỏ hàng
+            $cartModel = new CartModel();
+            $cartItems = $cartModel->getCartByUser($user_id);
+
+            if (!$cartItems) {
+                throw new Exception('Lỗi: Giỏ hàng trống.');
+            }
+
+            $orderDetailModel = new OrderDetailModel();
+
+            foreach ($cartItems as $item) {
+                // Thêm chi tiết đơn hàng (không cần kiểm tra bảng product_skus)
+                $orderDetailModel->insert([
+                    'order_id' => $order_id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['product_price']
+                ]);
+            }
+
+            // Xóa giỏ hàng sau khi đặt hàng thành công
+            $cartModel->clearCart($user_id);
+
+            // Chuyển hướng đến trang cảm ơn
+            header("Location: /thank");
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return;
         }
     }
 
 
     public function removeItem()
     {
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
-        //     $cartId = intval($_POST['cart_id']);
-        //     $cartModel = new CartModel();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
+            $cartId = intval($_POST['cart_id']);
+            $cartModel = new CartModel();
 
-        //     try {
-        //         $cartModel->deleteCartItem($cartId);
-                
-        //         header("Location: /user/cart");
-        //         exit();
-        //     } catch (Exception $e) {
-        //         echo "Lỗi: " . $e->getMessage();
-        //     }
-        // }
+            try {
+                $cartModel->deleteCartItem($cartId);
+
+                header("Location: /user/cart");
+                exit();
+            } catch (Exception $e) {
+                echo "Lỗi: " . $e->getMessage();
+            }
+        }
     }
 }

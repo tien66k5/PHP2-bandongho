@@ -110,63 +110,88 @@ class UserController extends Controller
     {
         try {
             $userId = $_POST['id'] ?? null;
-
+    
             if (!$userId) {
                 $_SESSION['error'] = "Thiếu ID người dùng!";
-                header("Location: /admin/users/edit/" . $userId);
+                header("Location: /admin/users/edit/" . $id);
                 exit;
             }
-
+    
+            $model = new UserModel();
+            $existingUser = $model->find($id);
+    
+            if (!$existingUser) {
+                $_SESSION['error'] = "Người dùng không tồn tại!";
+                header("Location: /admin/users");
+                exit;
+            }
+    
             $data = [
-                'fullname'     => $_POST['name'] ?? '',
+                'fullname' => $_POST['name'] ?? '',
                 'email'    => $_POST['email'] ?? '',
                 'phone'    => $_POST['phone'] ?? '',
                 'role'     => $_POST['role'] ?? '0',
+                'password' => $_POST['password'] ?? null, 
             ];
-
+    
             $errors = [];
-            $model = new UserModel();
-
-            $datass = $model->find($id);
-
-
+    
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "Email không hợp lệ!";
             }
-            $phone = (string) trim($data['phone']);
-            if (!preg_match('/^[0-9]{10}$/', $phone)) {
+    
+            if (!preg_match('/^[0-9]{10}$/', trim($data['phone']))) {
                 $errors[] = "Số điện thoại không hợp lệ!";
             }
-            if ($datass['email'] != $_POST['email']) {
+    
+            if ($existingUser['email'] != $_POST['email']) {
                 if ($model->existsByEmail($data['email'])) {
                     $errors[] = "Email này đã được đăng ký!";
                 }
             }
-
-
+    
+            if (!empty($data['password'])) {
+                if (strlen($data['password']) < 6 || strlen($data['password']) > 13) {
+                    $errors[] = "Mật khẩu phải từ 6 đến 13 ký tự!";
+                }
+    
+                if (!preg_match('/[A-Z]/', $data['password'])) {
+                    $errors[] = "Mật khẩu phải chứa ít nhất một chữ hoa!";
+                }
+    
+                if (!preg_match('/[0-9]/', $data['password'])) {
+                    $errors[] = "Mật khẩu phải chứa ít nhất một số!";
+                }
+    
+                $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+            } else {
+                $data['password'] = $existingUser['password'];
+            }
+    
             if (!empty($errors)) {
                 $_SESSION['error'] = implode("<br>", $errors);
-                header("Location: /admin/users/edit/" . $userId);
+                header("Location: /admin/users/edit/" . $id);
                 exit;
             }
-
-            $update = $model->update($userId, $data);
-
+    
+            $update = $model->update($id, $data);
+    
             if (!$update) {
                 $_SESSION['error'] = "Không thể cập nhật thông tin người dùng!";
-                header("Location: /admin/users/edit/" . $userId);
+                header("Location: /admin/users/edit/" . $id);
                 exit;
             }
-
+    
             $_SESSION['success'] = "Cập nhật thông tin thành công!";
-            header("Location: /admin/users" );
+            header("Location: /admin/users");
             exit;
         } catch (Exception $e) {
             $_SESSION['error'] = "Lỗi: " . $e->getMessage();
-            header("Location: /admin/users/edit/" . $userId);
+            header("Location: /admin/users/edit/" . $id);
             exit;
         }
     }
+    
 
 
     public function delete(int $id)

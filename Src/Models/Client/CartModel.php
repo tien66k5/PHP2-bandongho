@@ -40,7 +40,31 @@ class CartModel extends Model
             return [];
         }
     }
-
+    public function getCartByUser(int $userId): array
+    {
+        try {
+            $sql = "SELECT 
+                        carts.id AS cart_id,
+                        carts.user_id,
+                        carts.product_id,
+                        carts.cart_quantity AS quantity, 
+                        products.name AS product_name,
+                        products.price AS product_price,
+                        products.image AS product_image
+                    FROM carts
+                    JOIN products ON carts.product_id = products.id
+                    WHERE carts.user_id = ?";
+    
+            $stmt = $this->database->getConnection()->prepare($sql);
+            $stmt->execute([$userId]);
+    
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Lỗi truy vấn database: " . $e->getMessage();
+            return [];
+        }
+    }
+    
 
     public function insert(array $data): int
     {
