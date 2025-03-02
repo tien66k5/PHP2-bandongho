@@ -11,7 +11,7 @@ class Login extends Viewer
 ?>
 
 
- 
+
 
         <div class="toast-container position-fixed top-0 end-0 p-3">
             <?php if (isset($_SESSION['success'])) : ?>
@@ -40,6 +40,15 @@ class Login extends Viewer
         </div>
 
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+                var toastList = toastElList.map(function(toastEl) {
+                    return new bootstrap.Toast(toastEl)
+                })
+                toastList.forEach(toast => toast.show());
+            });
+        </script>
 
 
 

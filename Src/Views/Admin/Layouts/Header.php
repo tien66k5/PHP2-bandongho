@@ -45,33 +45,25 @@ class Header extends Viewer
             // die;
             ?>
             <div class="container mt-4">
-                <?php if (!empty($_SESSION['success'])) : ?>
-                    <div id="toastSuccess" class="toast show bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="d-flex">
-                            <div class="toast-body">
-                                <strong>Thành công!</strong> <?= $_SESSION['success'] ?>
-                            </div>
-                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <!-- Hiển thị lỗi nếu có -->
-                <?php if (!empty($_SESSION['errors'])) : ?>
-                    <div class="alert alert-danger text-center w-auto" style="    position: absolute;
-    top: 15px;
-    left: 45%;
-    z-index: 29999;">
-                        <ul class="list-unstyled">
-                            <?php foreach ($_SESSION['errors'] as $error) : ?>
-                                <li><?= $error ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
+        
 
                 <?php
-                // Xóa session sau khi hiển thị để tránh lỗi hiển thị lại
+                if (isset($_SESSION['error'])) :
+                    $errorMessages = is_array($_SESSION['error']) ? $_SESSION['error'] : explode("\n", $_SESSION['error']);
+                    foreach ($errorMessages as $key => $value) :
+                ?>
+                        <div class="page-wrapper position-fixed  " style=" z-index:1000123; top:25px;left:45%;">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong><?= $value ?></strong>
+                            </div>
+                        </div>
+                <?php
+                    endforeach;
+                    unset($_SESSION['error']);
+                endif;
+                ?>
+                <?php
                 unset($_SESSION['success']);
                 unset($_SESSION['errors']);
                 ?>
@@ -194,7 +186,7 @@ class Header extends Viewer
                                 </a>
                                 <div id="userSubmenu" class="collapse submenu">
                                     <a class="nav-link" href="/admin/users">Danh sách người dùng</a>
-                                    <a class="nav-link" href="/admin/create-user">Thêm người dùng</a>
+                                    <a class="nav-link" href="/admin/users/add">Thêm người dùng</a>
                                 </div>
                             </li>
 

@@ -67,6 +67,12 @@ if (strpos($_SERVER["REQUEST_URI"], "/admin/") === 0) {
     $router->add("/admin/category/edit/{id:\d+}", ["controller" => "CategoryController", "action" => "edit"], "GET");
     $router->add("/admin/category/update/{id:\d+}", ["controller" => "CategoryController", "action" => "update"], "POST");
     $router->add("/admin/category/delete/{id:\d+}", ["controller" => "CategoryController", "action" => "delete"], "GET");
+    $router->add("/admin/users", ["controller" => "UserController", "action" => "show"], "GET");
+    $router->add("/admin/users/add", ["controller" => "UserController", "action" => "add"], "GET");
+    $router->add("/admin/users/edit/{id:\d+}", ["controller" => "UserController", "action" => "edit"], "GET");
+    $router->add("/admin/users/update/{id:\d+}", ["controller" => "UserController", "action" => "update"], "POST");
+    $router->add("/admin/users/delete/{id:\d+}", ["controller" => "UserController", "action" => "delete"], "GET");
+    $router->add("/admin/users/register", ["controller" => "UserController", "action" => "create"], "POST");
 
     // $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
     // $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");

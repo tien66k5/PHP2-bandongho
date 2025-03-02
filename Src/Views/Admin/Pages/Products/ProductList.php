@@ -52,7 +52,7 @@ class ProductList extends Viewer
                                                     <p class="m-0">Sửa</p>
                                                     <i class="ml-1 d-flex align-items-center justify-content-center typcn typcn-edit btn-icon-append"></i>
                                                 </a>
-                                                <a class="dropdown-item d-flex" href="product/delete/<?= $product['id'] ?>" onclick="return confirm('Bạn chắc chứ?')">
+                                                <a class="dropdown-item d-flex" href="product/delete/<?= $product['id'] ?>" onclick="return confirm('Xóa sản phẩm này')">
                                                     <p class="m-0">Xóa</p>
                                                     <i class="ml-1 d-flex align-items-center justify-content-center typcn typcn-delete-outline btn-icon-append"></i>
                                                 </a>
