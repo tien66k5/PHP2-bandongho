@@ -34,6 +34,7 @@ $router->add("/user/cart/remove", ["controller" => "CartController", "action" =>
 $router->add("/user/cart/add/{id:\d+}", ["controller" => "CartController", "action" => "create"], "POST");
 $router->add("/user/checkout", ["controller" => "CartController", "action" => "checkout"], "GET");
 $router->add("/processCheckout", ["controller" => "CartController", "action" => "processCheckout"], "POST");
+$router->add("/search", ["controller" => "SearchController", "action" => "show"], "GET");
 $router->add("/register", ["controller" => "LoginController", "action" => "create"], "POST");
 $router->add("/account", ["controller" => "AccountController", "action" => "show"], "GET");
 $router->add("/logout", ["controller" => "LoginController", "action" => "logout"], "GET");

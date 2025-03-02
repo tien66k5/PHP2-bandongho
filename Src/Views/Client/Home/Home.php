@@ -78,17 +78,12 @@ class Home extends Viewer
                                         <a href="#"><?= htmlspecialchars($product['name']); ?></a>
                                         <span class="cart_price"><?= number_format($product['price'], 0, ',', '.'); ?> VND</span>
                                     </div>
-                                    <div class="cart_remove">
-                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                    </div>
+                                   
                                 </div>
                         <?php endforeach;
                         endif; ?>
 
-                        <div class="block_content">
-                            <p>2 products</p>
-                            <a href="#">» My wishlists</a>
-                        </div>
+                      
                     </div>
                     <!--wishlist block end-->
 
@@ -114,7 +109,7 @@ class Home extends Viewer
                     <!--popular tags end-->
 
                     <!--newsletter block start-->
-                    <div class="sidebar_widget newsletter mb-35">
+                    <!-- <div class="sidebar_widget newsletter mb-35">
                         <div class="block_title">
                             <h3>Bản tin</h3>
                         </div>
@@ -123,13 +118,13 @@ class Home extends Viewer
                             <input placeholder="Your email address" type="text">
                             <button type="submit">Subscribe</button>
                         </form>
-                    </div>
+                    </div> -->
                     <!--newsletter block end-->
 
                     <!--sidebar banner-->
                     <div class="sidebar_widget bottom ">
                         <div class="banner_img">
-                            <a href="#"><img src="<?= getenv('APP_URL')  ?>/public/Assets//img/banner/banner9.jpg" alt=""></a>
+                            <a href="#"><img style=" border-radius:10px;" src="https://img.freepik.com/free-psd/black-friday-product-sale-social-media-post-design-template_47987-24560.jpg?t=st=1740919759~exp=1740923359~hmac=36d4f52851093bf5bc5d8018f344c098bef554e5ea685a07a1f83285cf655dc6&w=740" alt=""></a>
                         </div>
                     </div>
                     <!--sidebar banner end-->

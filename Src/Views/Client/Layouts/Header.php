@@ -155,10 +155,16 @@ class Header extends Viewer
                                     <div class="col-lg-9 col-md-9">
                                         <div class="header_right_info">
                                             <div class="search_bar">
-                                                <form action="#">
+                                                <!-- <form action="#">
                                                     <input placeholder="Tìm kiếm ..." type="text">
                                                     <button type="submit"><i class="fa fa-search"></i></button>
+                                                </form> -->
+
+                                                <form action="/search" method="get">
+                                                    <input type="text" id="search" name="search" placeholder="N.Tiến quá là đẹp trai">
+                                                    <button type="submit"><i class="fa fa-search"></i></button>
                                                 </form>
+
                                             </div>
                                             <!-- <div class="shopping_cart">
                                                 <a href="#"><i class="fa fa-shopping-cart"></i> 2Items - $209.44 <i class="fa fa-angle-down"></i></a>
