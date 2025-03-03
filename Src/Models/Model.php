@@ -58,6 +58,18 @@ class Model
         }
     }
 
+    public function findAllC(): array
+    {
+        try {
+            $sql = "SELECT * FROM {$this->table} where status = '1'";
+
+            $result = $this->database->getConnection()->query($sql);
+            return $result->fetchAll();
+        } catch (PDOException $e) {
+            echo "Lỗi truy vấn database: " . $e->getMessage();
+            return [];
+        }
+    }
 
     protected function validate(array $data): void
     {

@@ -43,8 +43,8 @@ class Account extends Viewer
                                 </li>
                                 <li> <a href="#orders" data-toggle="tab" class="nav-link">Đơn hàng</a></li>
                                 <!-- <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li> -->
-                                <li><a href="#address" data-toggle="tab" class="nav-link">Địa chỉ</a></li>
-                                <li><a href="#account-details" data-toggle="tab" class="nav-link">Tài khoản</a></li>
+                                <!-- <li><a href="#address" data-toggle="tab" class="nav-link">Địa chỉ</a></li> -->
+                                <!-- <li><a href="#acount-details" data-toggle="tab" class="nav-link">Tài khoản</a></li> -->
                                 <li><a href="/logout" class="nav-link">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -84,17 +84,15 @@ class Account extends Viewer
                                                                                             echo 'Đang xử lý';
                                                                                             break;
                                                                                         case 2:
-                                                                                            echo 'Chờ thanh toán';
-                                                                                            break;
-                                                                                        case 3:
-                                                                                            echo 'Đã thanh toán';
-                                                                                            break;
-                                                                                        case 4:
-                                                                                            echo 'Đang vận chuyển';
-                                                                                            break;
-                                                                                        case 5:
                                                                                             echo 'Đã giao';
                                                                                             break;
+                                                                                        case 3:
+                                                                                            echo 'Đã giao';
+                                                                                            break;
+                                                                                        case 4:
+                                                                                            echo 'Đã hủy';
+                                                                                            break;
+
                                                                                         default:
                                                                                             echo 'Đã hủy';
                                                                                             break;
@@ -102,7 +100,7 @@ class Account extends Viewer
                                                                                     ?></span></td>
                                                     <td><?= number_format($order['total_price'], 0, ',', '.') ?></td>
                                                     <td>
-                                                    <li><a href="/user/order/detail/<?= $order['id'] ?>">Xem chi tiết</a></li>
+                                                        <li><a href="/user/order/detail/<?= $order['id'] ?>">Xem chi tiết</a></li>
                                                     </td>
                                                 </tr>
                                             <?php                                          }

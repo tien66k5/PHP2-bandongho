@@ -169,13 +169,7 @@ class Header extends Viewer
                                     <div class="badge badge-danger">new</div>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin/dashboard">
-                                    <i class="typcn typcn-device-desktop menu-icon"></i>
-                                    <span class="menu-title">Dashboard</span>
-                                    <div class="badge badge-danger">new</div>
-                                </a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="" data-bs-toggle="collapse" data-bs-target="#userSubmenu">
                                     <i class="typcn typcn-business-card menu-icon"></i>

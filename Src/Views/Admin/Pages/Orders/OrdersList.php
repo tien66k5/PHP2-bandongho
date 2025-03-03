@@ -65,10 +65,10 @@ class OrdersList extends Viewer
                                                         <select class="form-select" name="status" onchange="this.form.submit()">
                                                             <?php
                                                             $statuses = [
-                                                                0 => "Chờ duyệt",
-                                                                1 => "Đã duyệt",
-                                                                2 => "Đã giao",
-                                                                3 => "Đã hủy"
+                                                                1 => "Chờ duyệt",
+                                                                2 => "Đã duyệt",
+                                                                3 => "Đã giao",
+                                                                4 => "Đã hủy"
                                                             ];
                                                             foreach ($statuses as $value => $label) {
                                                                 if ($value < $order['status']) {

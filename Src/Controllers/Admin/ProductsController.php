@@ -46,7 +46,7 @@ class ProductsController extends Controller
         try {
 
             $categoryModel = new CategoryModel();
-            $categories = $categoryModel->findAll();
+            $categories = $categoryModel->findAllC();
             Header::render();
             ProductAdd::render($categories);
             Footer::render();

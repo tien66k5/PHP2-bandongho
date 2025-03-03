@@ -19,7 +19,6 @@ class OrderDetail extends Viewer
                         <th>Giá</th>
                         <th>Số Lượng</th>
                         <th>Ngày Tạo</th>
-                        <th>Ngày Cập Nhật</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +29,6 @@ class OrderDetail extends Viewer
                             <td><?= number_format($order["product_price"], 0, ',', '.') ?> VND</td>
                             <td><?= $order["quantity"] ?></td>
                             <td><?= $order["order_date"] ?></td>
-                            <td><?= $order["order_status"] == 0 ? 'Đang xử lý' : 'Hoàn thành' ?></td>
                         </tr>
                     <?php endforeach; ?>
 
