@@ -18,16 +18,13 @@ use Src\Middleware\AuthMiddleware;
 
 class ProductsController extends Controller
 {
-    // public function show() {
-    //     echo $this->view->render('Admin/Pages/Products/ProductList');
-    // }
-    // AuthMiddleware::checkAdmin();
-    // AuthMiddleware::checkAdmin();
-    // 
+    public function __construct()
+    {
+        AuthMiddleware::checkAdmin();
+    }
     public function list()
     {
         try {
-            AuthMiddleware::checkAdmin();
 
             $model = new ProductModel();
             $products = $model->findAll();
@@ -47,7 +44,6 @@ class ProductsController extends Controller
     public function add()
     {
         try {
-            AuthMiddleware::checkAdmin();
 
             $categoryModel = new CategoryModel();
             $categories = $categoryModel->findAll();
@@ -61,7 +57,6 @@ class ProductsController extends Controller
     public function create()
     {
         try {
-            AuthMiddleware::checkAdmin();
             $validate = $_POST;
             $errors = ProductValidate::productValidation($validate, $_FILES);
 
@@ -110,7 +105,6 @@ class ProductsController extends Controller
     public function edit(int $id)
     {
         try {
-            AuthMiddleware::checkAdmin();
 
             $model = new ProductModel();
             $product = $model->find($id);
@@ -134,7 +128,6 @@ class ProductsController extends Controller
     public function detail($id)
     {
         try {
-            AuthMiddleware::checkAdmin();
             $model = new ProductModel();
             $data = $model->find($id);
             Header::render();
@@ -147,7 +140,6 @@ class ProductsController extends Controller
     public function update(int $id)
     {
         try {
-            AuthMiddleware::checkAdmin();
             $model = new ProductModel();
             $product = $model->find($id);
 
@@ -208,7 +200,6 @@ class ProductsController extends Controller
     public function delete(int $id)
     {
         try {
-            AuthMiddleware::checkAdmin();
             $model = new ProductModel();
             $product = $model->find($id);
 

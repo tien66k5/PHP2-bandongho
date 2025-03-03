@@ -46,11 +46,11 @@ class ProductAdd extends Viewer
                             <input type="number" class="form-control" name="price" id="price" placeholder="Price">
                         </div>
 
-                      <div class="form-group">
+                        <div class="form-group">
                             <label for="quantity">Số lượng</label>
                             <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
                         </div>
-   <!--
+                        <!--
                         <div class="form-group">
                             <label for="discountRate">Giá giảm (%)</label>
                             <input type="number" class="form-control" name="discountRate" id="discountRate" placeholder="Discount Rate">
@@ -128,6 +128,44 @@ class ProductAdd extends Viewer
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const form = document.querySelector(".forms-sample");
+
+                form.addEventListener("submit", function(event) {
+                    let isValid = true;
+                    const inputs = form.querySelectorAll("input, textarea, select"); // Lấy tất cả input, textarea, select
+
+                    inputs.forEach((input) => {
+                        const errorMessage = input.nextElementSibling; // Phần tử ngay sau input (nếu có)
+
+                        if (input.value.trim() === "") {
+                            isValid = false;
+                            input.style.border = "1px solid red";
+
+                            // Nếu chưa có thông báo lỗi, tạo mới
+                            if (!errorMessage || !errorMessage.classList.contains("error-message")) {
+                                const errorText = document.createElement("div");
+                                errorText.classList.add("error-message");
+                                errorText.style.color = "red";
+                                errorText.style.fontSize = "12px";
+                                errorText.textContent = "Mục này không được trống";
+                                input.insertAdjacentElement("afterend", errorText);
+                            }
+                        } else {
+                            input.style.border = "1px solid #ced4da"; // Reset viền về mặc định
+                            if (errorMessage && errorMessage.classList.contains("error-message")) {
+                                errorMessage.remove(); // Xóa thông báo lỗi nếu có
+                            }
+                        }
+                    });
+
+                    if (!isValid) {
+                        event.preventDefault(); // Ngăn form submit nếu có lỗi
+                    }
+                });
+            });
+        </script>
 
         <script>
             function create() {
@@ -155,7 +193,7 @@ class ProductAdd extends Viewer
                 $(__this).closest(".items_properties").remove();
             }
         </script>
-        
+
         <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
         </script>

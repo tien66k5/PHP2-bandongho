@@ -186,7 +186,7 @@ class Home extends Viewer
                                         <div class="col-lg-3">
                                             <div class="single_product">
                                                 <div class="product_thumb">
-                                                    <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                                    <a href="/products/detail/<?= $product['id'] ?>"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
                                                     <div class="img_icone">
                                                         <img src="<?= getenv('APP_URL')  ?>/public/Assets/img/cart/span-new.png" alt="">
                                                     </div>
@@ -199,7 +199,7 @@ class Home extends Viewer
                                                 </div>
                                                 <div class="product_content">
                                                     <span class="product_price"><?= htmlspecialchars($product['price']); ?></span>
-                                                    <h3 class="product_title"><a href="single-product.html"><?= htmlspecialchars($product['name']); ?></a></h3>
+                                                    <h3 class="product_title"><a href="/products/detail/<?= $product['id'] ?>"><?= htmlspecialchars($product['name']); ?></a></h3>
                                                 </div>
                                                 <div class="product_info">
                                                     <ul>
@@ -234,7 +234,7 @@ class Home extends Viewer
                                         <div class="col-lg-3">
                                             <div class="single_product">
                                                 <div class="product_thumb">
-                                                    <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                                    <a href="/products/detail/<?= $product['id'] ?>"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
                                                     <div class="img_icone">
                                                         <img src="<?= getenv('APP_URL')  ?>/public/Assets/img/cart/span-new.png" alt="">
                                                     </div>
@@ -247,7 +247,7 @@ class Home extends Viewer
                                                 </div>
                                                 <div class="product_content">
                                                     <span class="product_price"><?= htmlspecialchars($product['price']); ?></span>
-                                                    <h3 class="product_title"><a href="single-product.html"><?= htmlspecialchars($product['name']); ?></a></h3>
+                                                    <h3 class="product_title"><a href="/products/detail/<?= $product['id'] ?>"><?= htmlspecialchars($product['name']); ?></a></h3>
                                                 </div>
                                                 <div class="product_info">
                                                     <ul>

@@ -222,7 +222,7 @@ class ProductList extends Viewer
                                             <div class="col-lg-4 col-md-6">
                                                 <div class="single_product">
                                                     <div class="product_thumb">
-                                                        <a href="single-product.html"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
+                                                        <a href="/products/detail/<?= $product['id'] ?>"><img src="/public/Uploads/<?= htmlspecialchars($product['image']) ?>" alt=""></a>
                                                         <div class="img_icone">
                                                             <img src="<?= getenv('APP_URL')  ?>/public/Assets/img/cart/span-new.png" alt="">
                                                         </div>

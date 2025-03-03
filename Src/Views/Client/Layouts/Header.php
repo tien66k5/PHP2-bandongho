@@ -126,7 +126,7 @@ class Header extends Viewer
                                                 <?php
                                                 }
                                                 ?>
-                                                <li><a href="contact.html" title="Contact">Liên hệ</a></li>
+                                                <!-- <li><a href="contact.html" title="Contact">Liên hệ</a></li> -->
                                                 <!-- <li><a href="wishlist.html" title="wishlist">My wishlist</a></li> -->
                                                 <li><a href="/account" title="My account">Tài khoản</a></li>
                                                 <li><a href="/user/cart" title="My cart">Giỏ hàng</a></li>
@@ -375,7 +375,7 @@ class Header extends Viewer
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <li><a href="/contact">Liên hệ</a></li>
+                                                        <!-- <li><a href="/contact">Liên hệ</a></li> -->
 
                                                     </ul>
                                                 </nav>

@@ -3,6 +3,7 @@
 namespace Src\Controllers\Admin;
 
 use Src\Framework\Controller;
+use Src\Middleware\AuthMiddleware;
 use Src\Models\Admin\OrderModel;
 use Src\Views\Admin\Layouts\Footer;
 use Src\Views\Admin\Layouts\Header;
@@ -10,6 +11,11 @@ use Src\Views\Admin\Pages\Orders\OrdersList;
 
 class OrdersController extends Controller
 {
+
+    public function __construct()
+    {
+        AuthMiddleware::checkAdmin();
+    }
     public function show()
     {
         $orderModel = new OrderModel();

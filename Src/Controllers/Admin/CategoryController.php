@@ -3,6 +3,7 @@
 namespace Src\Controllers\Admin;
 
 use Src\Framework\Controller;
+use Src\Middleware\AuthMiddleware;
 use Src\Views\Admin\Layouts\Footer;
 use Src\Views\Admin\Layouts\Header;
 use Src\Views\Admin\Pages\Category\CategoryList;
@@ -14,8 +15,13 @@ use Src\Views\Admin\Pages\Category\CategoryAdd;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        AuthMiddleware::checkAdmin();
+    }
     public function list()
     {
+
         try {
             $model = new CategoryModel();
             $category = $model->findAll();
@@ -44,22 +50,20 @@ class CategoryController extends Controller
     public function create()
     {
         try {
-                    // tiến hành thêm sản phẩm
-                    $data = [
-                        'name' => $_POST['name'] ?? '',
-                        'status' => $_POST['status'] ?? null,
-                    ];
+            // tiến hành thêm sản phẩm
+            $data = [
+                'name' => $_POST['name'] ?? '',
+                'status' => $_POST['status'] ?? null,
+            ];
 
-                    // var_dump($data);
-                    $model = new CategoryModel();
-                    $record = $model->insert($data);
-                    if (!$record) {
-                        throw new Exception("Không thể thêm sản phẩm");
-                    }
-                    header("Location: /admin/category");
-                    exit;
-
-                
+            // var_dump($data);
+            $model = new CategoryModel();
+            $record = $model->insert($data);
+            if (!$record) {
+                throw new Exception("Không thể thêm sản phẩm");
+            }
+            header("Location: /admin/category");
+            exit;
         } catch (Exception $e) {
             echo "" . $e->getMessage();
             exit;
@@ -160,18 +164,4 @@ class CategoryController extends Controller
             echo "Lỗi: " . $e->getMessage();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

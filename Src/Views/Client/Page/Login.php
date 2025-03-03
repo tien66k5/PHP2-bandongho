@@ -62,21 +62,19 @@ class Login extends Viewer
                             <p>
                                 <label>Vui lòng nhập email<span>*</span></label>
                                 <input type="text" name="email">
+                            <p class="error-message"></p>
                             </p>
                             <p>
                                 <label>Mật khẩu<span>*</span></label>
                                 <input type="password" name="password">
+                            <p class="error-message"></p>
                             </p>
                             <div class="login_submit">
                                 <button type="submit" class="rounded">Đăng nhập</button>
-                                <!-- <label for="remember">
-                                    <input id="remember" type="checkbox">
-                                Lưu trên thiết bị này
-                                </label> -->
                                 <a href="#">Quên mật khẩu ?</a>
                             </div>
-
                         </form>
+
                     </div>
                 </div>
                 <!--login area start-->
@@ -89,24 +87,73 @@ class Login extends Viewer
                             <p>
                                 <label>Vui lòng nhập email<span>*</span></label>
                                 <input type="email" name="email">
+                            <p class="error-message"></p>
                             </p>
                             <p>
                                 <label>Mật khẩu<span>*</span></label>
                                 <input type="password" name="password">
+                            <p class="error-message"></p>
                             </p>
                             <p>
                                 <label>Nhập lại mật khẩu<span>*</span></label>
                                 <input type="password" name="confirmPassword">
+                            <p class="error-message"></p>
                             </p>
                             <div class="login_submit">
-                                <button type="submit " class="rounded">Xác nhận</button>
+                                <button type="submit" class="rounded">Xác nhận</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
                 <!--register area end-->
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function validateForm(form) {
+                    let isValid = true;
+                    form.querySelectorAll("input").forEach(input => {
+                        let errorMessage = input.nextElementSibling;
+                        if (!errorMessage || !errorMessage.classList.contains("error-message")) {
+                            errorMessage = document.createElement("p");
+                            errorMessage.classList.add("error-message");
+                            input.insertAdjacentElement("afterend", errorMessage);
+                        }
+
+                        if (input.value.trim() === "") {
+                            input.style.border = "1px solid red";
+                            errorMessage.textContent = "Mục này không được bỏ trống!";
+                            errorMessage.style.color = "red";
+                            isValid = false;
+                        } else {
+                            input.style.border = "";
+                            errorMessage.textContent = "";
+                        }
+                    });
+
+                    return isValid;
+                }
+
+                document.querySelectorAll("form").forEach(form => {
+                    form.addEventListener("submit", function(event) {
+                        if (!validateForm(form)) {
+                            event.preventDefault(); // Ngăn chặn gửi form nếu có lỗi
+                        }
+                    });
+                });
+            });
+        </script>
+
 <?php   }
 }
 
