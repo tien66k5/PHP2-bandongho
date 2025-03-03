@@ -43,18 +43,7 @@ $router->add("/logout", ["controller" => "LoginController", "action" => "logout"
 
 if (strpos($_SERVER["REQUEST_URI"], "/admin/") === 0) {
     AuthMiddleware::checkAdmin();
-    // Định nghĩa các route cho admin
-    // $router->add("/", ["controller" => "HomeController", "action" => "index"], "GET");
-    // $router->add("/home", ["controller" => "HomeController", "action" => "show"], "GET");
-    // $router->add("/product/list", ["controller" => "ProductListController", "action" => "show"], "GET");
-    // $router->add("/blog", ["controller" => "BlogController", "action" => "show"], "GET");
-    // $router->add("/contact", ["controller" => "ContactController", "action" => "show"], "GET");
 
-    // $router->add("/admin", ["controller" => "DashboardController", "action" => "show"], "GET");
-    // $router->add("/admin/dashboard", ["controller" => "DashboardController", "action" => "show"], "GET");
-    // $router->add("/admin/vouchers", ["controller" => "VouchersController", "action" => "show"], "GET");
-    // $router->add("/admin/users", ["controller" => "UserController", "action" => "show"], "GET");
-    // $router->add("/admin/create-user", ["controller" => "UserController", "action" => "add"], "GET");
     $router->add("/admin/products", ["controller" => "ProductsController", "action" => "list"], "GET");
     $router->add("/admin/product/add", ["controller" => "ProductsController", "action" => "add"], "GET");
     $router->add("/admin/product/create", ["controller" => "ProductsController", "action" => "create"], "POST");
@@ -74,17 +63,8 @@ if (strpos($_SERVER["REQUEST_URI"], "/admin/") === 0) {
     $router->add("/admin/users/update/{id:\d+}", ["controller" => "UserController", "action" => "update"], "POST");
     $router->add("/admin/users/delete/{id:\d+}", ["controller" => "UserController", "action" => "delete"], "GET");
     $router->add("/admin/users/register", ["controller" => "UserController", "action" => "create"], "POST");
-    $router->add("/admin/oder", ["controller" => "OderController", "action" => "show"], "GET");
-
-    // $router->add("/admin/allattribute", ["controller" => "UserController", "action" => "show"], "GET");
-    // $router->add("/admin/attribute", ["controller" => "AttributeController", "action" => "add"], "GET");
-    // $router->add("/admin/categories", ["controller" => "CategoryController", "action" => "show"], "GET");
-    // $router->add("/admin/category/add", ["controller" => "CategoryController", "action" => "add"], "GET");
-    // $router->add("/admin/brands", ["controller" => "BrandController", "action" => "show"], "GET");
-    // $router->add("/admin/brand/add", ["controller" => "BrandController", "action" => "add"], "GET");
-    // $router->add("/admin/comments", ["controller" => "CommentController", "action" => "show"], "GET");
-    // $router->add("/admin/orders", ["controller" => "OrdersController", "action" => "show"], "GET");
-
+    $router->add("/admin/orders", ["controller" => "OrdersController", "action" => "show"], "GET");
+    $router->add("/admin/order/update", ["controller" => "OrdersController", "action" => "updateStatus"], "POST");
 }
 
 
