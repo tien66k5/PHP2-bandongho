@@ -46,7 +46,6 @@ class Header extends Viewer
                                 <div class="toast-body">
                                     <strong>Thành công!</strong> <?= $_SESSION['success'] ?>
                                 </div>
-                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                             </div>
                         </div>
                     <?php endif; ?>

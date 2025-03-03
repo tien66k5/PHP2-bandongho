@@ -66,7 +66,6 @@ class Account extends Viewer
                                         <thead>
                                             <tr>
                                                 <th>Đơn hàng</th>
-                                                <th>Ngày đặt</th>
                                                 <th>Trạng thái</th>
                                                 <th>Tổng tiền</th>
                                                 <th></th>
@@ -74,13 +73,11 @@ class Account extends Viewer
                                         </thead>
                                         <tbody>
                                             <?php
-
                                             $dataOrder = $data['orders'] ?? [];
                                             foreach ($dataOrder as $index => $order) {
                                             ?>
                                                 <tr>
                                                     <td><?= $index + 1 ?></td>
-                                                    <td><?= $order['created_at'] ?></td>
                                                     <td><span class='statusClass'><?php
                                                                                     switch ($order['status']) {
                                                                                         case 1:
@@ -105,58 +102,8 @@ class Account extends Viewer
                                                                                     ?></span></td>
                                                     <td><?= number_format($order['total_price'], 0, ',', '.') ?></td>
                                                     <td>
-                                                        <div class="container  text-center">
-                                                            <div class="dropdown">
-                                                          
-                                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                                                </button>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#infoModal">Hiển thị bảng</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="infoModalLabel">Thông tin chi tiết</h5>
-                                                                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> -->
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <table class="table table-striped  table-hover">
-                                                                            <thead class="thead-dark">
-                                                                                <tr>
-                                                                                    <th>#</th>
-                                                                                    <th>Tên</th>
-                                                                                    <th>Tuổi</th>
-                                                                                    <th>Email</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td>1</td>
-                                                                                    <td>Nguyễn Văn A</td>
-                                                                                    <td>25</td>
-                                                                                    <td>email@example.com</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>2</td>
-                                                                                    <td>Trần Thị B</td>
-                                                                                    <td>30</td>
-                                                                                    <td>b@example.com</td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn  btn-secondary" style="border-radius: 15px;" data-bs-dismiss="modal">Đóng</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <li><a href="/user/order/detail/<?= $order['id'] ?>">Xem chi tiết</a></li>
                                                     </td>
-                                                    <!-- <td><a href='' class='view'>Xem chi tiết</a></td> -->
                                                 </tr>
                                             <?php                                          }
                                             ?>

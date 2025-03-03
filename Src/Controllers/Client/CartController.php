@@ -134,22 +134,37 @@ class CartController extends Controller
 
     public function processCheckout()
     {
+        $errors = []; 
+
         try {
-            // Lấy dữ liệu từ request và xử lý đầu vào
-            $total_price = (int) str_replace(',', '', $_POST['totalPrice'] ?? 0);
+            $total_price = str_replace(',', '', $_POST['totalPrice'] ?? 0);
             $user_id = $_POST['user_id'] ?? null;
             $phone = $_POST['phone'] ?? null;
+            $name = $_POST['name'] ?? null;
             $detailedAddress = $_POST['detailedAddress'] ?? '';
 
             if (!$user_id) {
-                throw new Exception('Lỗi: Thiếu thông tin người dùng.');
+                $errors[] = 'Lỗi: Thiếu thông tin người dùng.';
             }
 
             if ($total_price <= 0) {
-                throw new Exception('Lỗi: Tổng giá trị đơn hàng không hợp lệ.');
+                $errors[] = 'Lỗi: Tổng giá trị đơn hàng không hợp lệ.';
             }
 
-            // Tạo địa chỉ giao hàng
+            if (empty($phone)) {
+                $errors[] = 'Lỗi: Số điện thoại không được để trống.';
+            }
+
+            if (empty($name)) {
+                $errors[] = 'Lỗi: Họ tên không được để trống.';
+            }
+
+            if (!empty($errors)) {
+                $_SESSION['error'] = implode("<br>", $errors);
+                header("Location: /user/checkout");
+                exit;
+            }
+
             $fullAddress = trim(
                 ($_POST['tinh_ten'] ?? '') . ', ' .
                     ($_POST['quan_ten'] ?? '') . ', ' .
@@ -166,10 +181,25 @@ class CartController extends Controller
             ]);
 
             if (!$address_id) {
-                throw new Exception('Lỗi: Không thể tạo địa chỉ giao hàng.');
+                $errors[] = 'Lỗi: Không thể tạo địa chỉ giao hàng.';
             }
 
-            // Tạo đơn hàng
+            $userModel = new UserModel();
+            $userUpdate = $userModel->update($user_id, [
+                'phone' => $phone,
+                'fullname' => $name,
+            ]);
+
+            if (!$userUpdate) {
+                $errors[] = 'Lỗi: Không thể cập nhật thông tin người dùng.';
+            }
+
+            if (!empty($errors)) {
+                $_SESSION['error'] = implode("<br>", $errors);
+                header("Location: /checkout");
+                exit;
+            }
+
             $orderModel = new OrdersModels();
             $order_id = $orderModel->insert([
                 'total_price' => $total_price,
@@ -178,21 +208,24 @@ class CartController extends Controller
             ]);
 
             if (!$order_id) {
-                throw new Exception('Lỗi: Không thể tạo đơn hàng.');
+                $errors[] = 'Lỗi: Không thể tạo đơn hàng.';
             }
 
-            // Lấy danh sách sản phẩm trong giỏ hàng
             $cartModel = new CartModel();
             $cartItems = $cartModel->getCartByUser($user_id);
 
             if (!$cartItems) {
-                throw new Exception('Lỗi: Giỏ hàng trống.');
+                $errors[] = 'Lỗi: Giỏ hàng trống.';
+            }
+
+            if (!empty($errors)) {
+                $_SESSION['error'] = implode("<br>", $errors);
+                header("Location: /checkout");
+                exit;
             }
 
             $orderDetailModel = new OrderDetailModel();
-
             foreach ($cartItems as $item) {
-                // Thêm chi tiết đơn hàng (không cần kiểm tra bảng product_skus)
                 $orderDetailModel->insert([
                     'order_id' => $order_id,
                     'product_id' => $item['product_id'],
@@ -201,15 +234,15 @@ class CartController extends Controller
                 ]);
             }
 
-            // Xóa giỏ hàng sau khi đặt hàng thành công
             $cartModel->clearCart($user_id);
 
-            // Chuyển hướng đến trang cảm ơn
+            $_SESSION['success'] = 'Đặt hàng thành công!';
             header("Location: /thank");
             exit;
         } catch (Exception $e) {
-            echo $e->getMessage();
-            return;
+            $_SESSION['error'] = 'Lỗi hệ thống: ' . $e->getMessage();
+            header("Location: /checkout");
+            exit;
         }
     }
 

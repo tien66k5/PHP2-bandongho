@@ -45,31 +45,28 @@ class Header extends Viewer
             // die;
             ?>
             <div class="container mt-4">
-        
-
-                <?php
-                if (isset($_SESSION['error'])) :
-                    $errorMessages = is_array($_SESSION['error']) ? $_SESSION['error'] : explode("\n", $_SESSION['error']);
-                    foreach ($errorMessages as $key => $value) :
-                ?>
-                        <div class="page-wrapper position-fixed  " style=" z-index:1000123; top:25px;left:45%;">
-                            <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong><?= $value ?></strong>
-                            </div>
+                <?php if (isset($_SESSION['error'])) : ?>
+                    <div class="custom-alert-container">
+                        <div class="custom-alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul class="mb-0">
+                                <?php
+                                $errorMessages = is_array($_SESSION['error']) ? $_SESSION['error'] : explode("\n", $_SESSION['error']);
+                                foreach ($errorMessages as $value) :
+                                ?>
+                                    <li><?= htmlspecialchars($value) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
                         </div>
+                    </div>
                 <?php
-                    endforeach;
                     unset($_SESSION['error']);
                 endif;
-                ?>
-                <?php
                 unset($_SESSION['success']);
                 unset($_SESSION['errors']);
                 ?>
             </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
@@ -223,14 +220,14 @@ class Header extends Viewer
                                 </div>
                             </li>
                             <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
-                            <i class="typcn typcn-clipboard menu-icon"></i>
-                            <span class="menu-title">Đơn hàng</span>
-                        </a>
-                        <div id="ordersSubmenu" class="collapse submenu">
-                            <a class="nav-link" href="/admin/orders">Danh sách đơn hàng</a>
-                        </div>
-                    </li>
+                                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
+                                    <i class="typcn typcn-clipboard menu-icon"></i>
+                                    <span class="menu-title">Đơn hàng</span>
+                                </a>
+                                <div id="ordersSubmenu" class="collapse submenu">
+                                    <a class="nav-link" href="/admin/orders">Danh sách đơn hàng</a>
+                                </div>
+                            </li>
                             <!-- <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#brandsSubmenu">
                             <i class="typcn typcn-tags menu-icon"></i>

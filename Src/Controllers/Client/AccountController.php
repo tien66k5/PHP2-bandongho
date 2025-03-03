@@ -5,17 +5,20 @@ namespace Src\Controllers\Client;
 use Exception;
 use  Src\Framework\Controller;
 use Src\Models\Client\AddressModel;
+use Src\Models\Client\OrderDetailModel;
 use Src\Models\Client\OrdersModels;
 use Src\Models\Client\UserModel;
 use Src\Views\Client\Page\Account;
 use Src\Views\Client\Layouts\Footer;
 use Src\Views\Client\Layouts\Header;
+use Src\Views\Client\Page\OrderDetail;
 
 class AccountController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         if (!isset($_SESSION['user_id'])) {
-        $_SESSION['error'] = "Lỗi: Vui lòng đăng nhập! ";
+            $_SESSION['error'] = "Lỗi: Vui lòng đăng nhập! ";
             header("Location: /login");
 
             exit;
@@ -35,7 +38,8 @@ class AccountController extends Controller
             Account::render([
                 'user' => $dataUser,
                 'orders' => $dataOder
-            ]);            Footer::render();
+            ]);
+            Footer::render();
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
         }
@@ -49,6 +53,20 @@ class AccountController extends Controller
             $data = $user->find($id);
             Header::render();
             Account::render($data);
+            Footer::render();
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+        }
+    }
+    public function showOderDetail($id)
+    {
+        try {
+            $user = new OrderDetailModel;
+            $data = $user->findOrderDetail($id);
+            // echo '<pre>';
+            // var_dump($data);
+            Header::render();
+            OrderDetail::render($data);
             Footer::render();
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();

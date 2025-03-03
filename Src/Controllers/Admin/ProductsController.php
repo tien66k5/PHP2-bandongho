@@ -63,23 +63,11 @@ class ProductsController extends Controller
         try {
             AuthMiddleware::checkAdmin();
             $validate = $_POST;
-            // echo '<pre>';
-            // var_dump( $validate ,$_FILES );
             $errors = ProductValidate::productValidation($validate, $_FILES);
-            // trả về lỗi validate
-            // if ($errors) {
-            //     // bắt lỗi validate
-            //     if (!empty($errors)) {
-            //         foreach ($errors as $key => $error) {
-            //             echo "$error <br>";
-            //         }
-            //     }
-            // } 
 
             if (!empty($errors)) {
-                $_SESSION['errors'] = $errors; 
-                header("Location: /admin/products");
-                // var_dump($_SESSION);
+                $_SESSION['errors'] = $errors;
+                header("Location: /admin/product/add");
             } else {
 
                 $target_dir = $_ENV['UPLOAD_DIR'];
@@ -93,7 +81,7 @@ class ProductsController extends Controller
                     'name' => $_POST['name'] ?? '',
                     'description' => $_POST['description'] ?? null,
                     'price' => $_POST['price'] ?? 0,
-                    'total_quantity' => $_POST['quantity'] ?? '',
+                    'quantity' => $_POST['quantity'] ?? '',
                     'image' => $nameImage ?? ''
                 ];
 
@@ -103,14 +91,11 @@ class ProductsController extends Controller
                     echo 'fix đi ný';
                 }
 
-                // var_dump($data);
                 $model = new ProductModel();
                 $record = $model->insert($data);
                 if (!$record) {
-                    // throw new Exception("Không thể thêm sản phẩm");
                     $errors[] = "Không thể thêm sản phẩm";
                 }
-                // header("Location: " . $record . "/show");
                 header("Location: /admin/products");
                 exit;
             }

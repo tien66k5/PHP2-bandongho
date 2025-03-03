@@ -118,7 +118,32 @@
 /* === SCSS Compass Functions === */
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
+.custom-alert-container {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000123;
+  width: auto;
+  max-width: 500px;
+}
 
+.custom-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-alert ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.custom-alert li {
+  list-style-type: disc;
+}
 * {
   font-family: "Lexend Deca", sans-serif !important; 
 }
